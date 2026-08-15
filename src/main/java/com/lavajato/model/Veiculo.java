@@ -1,5 +1,7 @@
 package com.lavajato.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,6 +26,7 @@ public class Veiculo {
     private tipoVeiculo tipo;
 
     @ManyToOne
+    @JsonIgnore
     private Cliente cliente;
 
     public enum tipoVeiculo {
