@@ -1,4 +1,4 @@
-package com.lavajato.dto;
+package com.lavajato.dto.veiculo;
 
 import lombok.Data;
 

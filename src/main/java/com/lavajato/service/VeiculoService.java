@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lavajato.dto.VeiculoResponse;
+import com.lavajato.dto.veiculo.VeiculoResponse;
 import com.lavajato.model.Cliente;
 import com.lavajato.model.Veiculo;
 import com.lavajato.repository.ClienteRepository;
