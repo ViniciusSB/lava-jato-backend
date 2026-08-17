@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS servico (
-    id BIGSERIAL PRIMARY KEY,
-    tipo VARCHAR(255) NOT NULL,
-    detalhes TEXT,
-    preco_base DOUBLE PRECISION NOT NULL
-);

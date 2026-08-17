@@ -1,9 +1,7 @@
 package com.lavajato.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.lavajato.dto.usuario.UsuarioRequest;
 import com.lavajato.dto.usuario.UsuarioResponse;
 import com.lavajato.model.Usuario;
-import com.lavajato.model.Usuario.tipoUsuario;
 import com.lavajato.repository.UsuarioRepository;
 import com.lavajato.util.SenhaUtil;
 
@@ -80,7 +77,6 @@ public class UsuarioService {
     }
 
     public boolean deletarUsuario(Long usuarioId) {
-        Usuario user = usuarioRepository.findById(usuarioId).orElse(null);
         if (usuarioRepository.existsById(usuarioId)) {
             usuarioRepository.deleteById(usuarioId);
             return true;
