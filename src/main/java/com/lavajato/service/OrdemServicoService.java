@@ -34,6 +34,8 @@ public class OrdemServicoService {
     VeiculoRepository veiculoRepository;
     @Autowired
     ServicoRepository servicoRepository;
+    @Autowired
+    FaturamentoService faturamentoService;
 
     public OrdemServicoResponse gerar(Map<String, Object> dados) {
         OrdemServico ordemServico = new OrdemServico();
@@ -143,6 +145,7 @@ public class OrdemServicoService {
                 cliente.setFidelidade(cliente.getFidelidade() + 1);
                 clienteRepository.save(cliente);
             }
+            faturamentoService.gerarFaturamento(ordemServico);
         }
 
         ordemServico = ordemServicoRepository.save(ordemServico);
