@@ -61,22 +61,27 @@ public class OrdemServicoService {
         ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(OrdemServico.Status.EM_ANDAMENTO);
 
-        switch (veiculo.getTipo().toString()) {
-            case "MOTO":
-                ordemServico.setPreco(servico.getPrecoBase());
-                break;
-            case "CARRO":
-                ordemServico.setPreco(servico.getPrecoBase() + 15);
-                break;
-            case "CAMINHONETE":
-                ordemServico.setPreco(servico.getPrecoBase() + 25);
-                break;
-            case "CAMINHAO":
-                ordemServico.setPreco(servico.getPrecoBase() + 40);
-                break;
-            default:
-                break;
+        if (cliente.getFidelidade() == 10) {
+            ordemServico.setPreco(0);
+        } else {
+            switch (veiculo.getTipo().toString()) {
+                case "MOTO":
+                    ordemServico.setPreco(servico.getPrecoBase());
+                    break;
+                case "CARRO":
+                    ordemServico.setPreco(servico.getPrecoBase() + 15);
+                    break;
+                case "CAMINHONETE":
+                    ordemServico.setPreco(servico.getPrecoBase() + 25);
+                    break;
+                case "CAMINHAO":
+                    ordemServico.setPreco(servico.getPrecoBase() + 40);
+                    break;
+                default:
+                    break;
+            }
         }
+        
         ordemServico = ordemServicoRepository.save(ordemServico);
         return ordemServicoToResponse(ordemServico);
     }
@@ -109,21 +114,35 @@ public class OrdemServicoService {
         ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(status != null ? OrdemServico.Status.valueOf(status.toUpperCase()) : ordemServico.getStatus());
 
-        switch (veiculo.getTipo().toString()) {
-            case "MOTO":
-                ordemServico.setPreco(servico.getPrecoBase());
-                break;
-            case "CARRO":
-                ordemServico.setPreco(servico.getPrecoBase() + 15);
-                break;
-            case "CAMINHONETE":
-                ordemServico.setPreco(servico.getPrecoBase() + 25);
-                break;
-            case "CAMINHAO":
-                ordemServico.setPreco(servico.getPrecoBase() + 40);
-                break;
-            default:
-                break;
+        if (cliente.getFidelidade() == 10) {
+            ordemServico.setPreco(0);
+        } else {
+            switch (veiculo.getTipo().toString()) {
+                case "MOTO":
+                    ordemServico.setPreco(servico.getPrecoBase());
+                    break;
+                case "CARRO":
+                    ordemServico.setPreco(servico.getPrecoBase() + 15);
+                    break;
+                case "CAMINHONETE":
+                    ordemServico.setPreco(servico.getPrecoBase() + 25);
+                    break;
+                case "CAMINHAO":
+                    ordemServico.setPreco(servico.getPrecoBase() + 40);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (ordemServico.getStatus() == OrdemServico.Status.FINALIZADO) {
+            if (cliente.getFidelidade() == 10) {
+                cliente.setFidelidade(0);
+                clienteRepository.save(cliente);
+            } else {
+                cliente.setFidelidade(cliente.getFidelidade() + 1);
+                clienteRepository.save(cliente);
+            }
         }
 
         ordemServico = ordemServicoRepository.save(ordemServico);
@@ -171,9 +190,5 @@ public class OrdemServicoService {
         response.setEnderecoEntrega(ordemServico.getEnderecoEntrega());
         return response;
     }
-
-    
-
-    
     
 }

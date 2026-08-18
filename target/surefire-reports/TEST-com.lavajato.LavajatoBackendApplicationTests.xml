@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.lavajato.LavajatoBackendApplicationTests" time="3.025" tests="1" errors="1" skipped="0" failures="0" flakes="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.lavajato.LavajatoBackendApplicationTests" time="2.584" tests="1" errors="1" skipped="0" failures="0" flakes="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire/surefirebooter-20260817141147851_3.jar /home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire 2026-08-17T14-11-47_739-jvmRun1 surefire-20260817141147851_1tmp surefire_0-20260817141147851_2tmp"/>
+    <property name="sun.java.command" value="/home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire/surefirebooter-20260817205700294_3.jar /home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire 2026-08-17T20-57-00_188-jvmRun1 surefire-20260817205700294_1tmp surefire_0-20260817205700294_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/vinicius/Documentos/projetos/lava-jato-backend/target/test-classes:/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa/4.1.0/spring-boot-starter-data-jpa-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter/4.1.0/spring-boot-starter-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-logging/4.1.0/spring-boot-starter-logging-4.1.0.jar:/home/vinicius/.m2/repository/ch/qos/logback/logback-classic/1.5.34/logback-classic-1.5.34.jar:/home/vinicius/.m2/repository/ch/qos/logback/logback-core/1.5.34/logback-core-1.5.34.jar:/home/vinicius/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.25.4/log4j-to-slf4j-2.25.4.jar:/home/vinicius/.m2/repository/org/apache/logging/log4j/log4j-api/2.25.4/log4j-api-2.25.4.jar:/home/vinicius/.m2/repository/org/slf4j/jul-to-slf4j/2.0.18/jul-to-slf4j-2.0.18.jar:/home/vinicius/.m2/repository/jakarta/annotation/jakarta.annotation-api/3.0.0/jakarta.annotation-api-3.0.0.jar:/home/vinicius/.m2/repository/org/yaml/snakeyaml/2.6/snakeyaml-2.6.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/4.1.0/spring-boot-starter-jdbc-4.1.0.jar:/home/vinicius/.m2/repository/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar:/home/vinicius/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-data-jpa/4.1.0/spring-boot-data-jpa-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-data-commons/4.1.0/spring-boot-data-commons-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-persistence/4.1.0/spring-boot-persistence-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/data/spring-data-commons/4.1.0/spring-data-commons-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-hibernate/4.1.0/spring-boot-hibernate-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-jpa/4.1.0/spring-boot-jpa-4.1.0.jar:/home/vinicius/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/home/vinicius/.m2/repository/org/hibernate/orm/hibernate-core/7.4.1.Final/hibernate-core-7.4.1.Final.jar:/home/vinicius/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/vinicius/.m2/repository/org/jboss/logging/jboss-logging/3.6.3.Final/jboss-logging-3.6.3.Final.jar:/home/vinicius/.m2/repository/org/hibernate/models/hibernate-models/1.1.1/hibernate-models-1.1.1.jar:/home/vinicius/.m2/repository/org/glassfish/jaxb/jaxb-runtime/4.0.9/jaxb-runtime-4.0.9.jar:/home/vinicius/.m2/repository/org/glassfish/jaxb/jaxb-core/4.0.9/jaxb-core-4.0.9.jar:/home/vinicius/.m2/repository/org/eclipse/angus/angus-activation/2.0.3/angus-activation-2.0.3.jar:/home/vinicius/.m2/repository/org/glassfish/jaxb/txw2/4.0.9/txw2-4.0.9.jar:/home/vinicius/.m2/repository/com/sun/istack/istack-commons-runtime/4.1.2/istack-commons-runtime-4.1.2.jar:/home/vinicius/.m2/repository/jakarta/inject/jakarta.inject-api/2.0.1/jakarta.inject-api-2.0.1.jar:/home/vinicius/.m2/repository/org/springframework/spring-orm/7.0.8/spring-orm-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/data/spring-data-jpa/4.1.0/spring-data-jpa-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-tx/7.0.8/spring-tx-7.0.8.jar:/home/vinicius/.m2/repository/org/antlr/antlr4-runtime/4.13.2/antlr4-runtime-4.13.2.jar:/home/vinicius/.m2/repository/org/springframework/spring-aspects/7.0.8/spring-aspects-7.0.8.jar:/home/vinicius/.m2/repository/org/aspectj/aspectjweaver/1.9.25.1/aspectjweaver-1.9.25.1.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-jdbc/4.1.0/spring-boot-jdbc-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-sql/4.1.0/spring-boot-sql-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-transaction/4.1.0/spring-boot-transaction-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-jdbc/7.0.8/spring-jdbc-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc/4.1.0/spring-boot-starter-webmvc-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-jackson/4.1.0/spring-boot-starter-jackson-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-jackson/4.1.0/spring-boot-jackson-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat/4.1.0/spring-boot-starter-tomcat-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-tomcat-runtime/4.1.0/spring-boot-starter-tomcat-runtime-4.1.0.jar:/home/vinicius/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/11.0.22/tomcat-embed-core-11.0.22.jar:/home/vinicius/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/11.0.22/tomcat-embed-el-11.0.22.jar:/home/vinicius/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/11.0.22/tomcat-embed-websocket-11.0.22.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-tomcat/4.1.0/spring-boot-tomcat-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-http-converter/4.1.0/spring-boot-http-converter-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-web/7.0.8/spring-web-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-webmvc/4.1.0/spring-boot-webmvc-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-servlet/4.1.0/spring-boot-servlet-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-webmvc/7.0.8/spring-webmvc-7.0.8.jar:/home/vinicius/.m2/repository/org/postgresql/postgresql/42.7.11/postgresql-42.7.11.jar:/home/vinicius/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-devtools/4.1.0/spring-boot-devtools-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot/4.1.0/spring-boot-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-autoconfigure/4.1.0/spring-boot-autoconfigure-4.1.0.jar:/home/vinicius/.m2/repository/org/flywaydb/flyway-database-postgresql/12.4.0/flyway-database-postgresql-12.4.0.jar:/home/vinicius/.m2/repository/org/flywaydb/flyway-core/12.4.0/flyway-core-12.4.0.jar:/home/vinicius/.m2/repository/tools/jackson/core/jackson-databind/3.1.4/jackson-databind-3.1.4.jar:/home/vinicius/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar:/home/vinicius/.m2/repository/tools/jackson/core/jackson-core/3.1.4/jackson-core-3.1.4.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-flyway/4.1.0/spring-boot-starter-flyway-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-flyway/4.1.0/spring-boot-flyway-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/security/spring-security-core/7.1.0/spring-security-core-7.1.0.jar:/home/vinicius/.m2/repository/org/springframework/security/spring-security-crypto/7.1.0/spring-security-crypto-7.1.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-aop/7.0.8/spring-aop-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/spring-beans/7.0.8/spring-beans-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/spring-context/7.0.8/spring-context-7.0.8.jar:/home/vinicius/.m2/repository/org/springframework/spring-core/7.0.8/spring-core-7.0.8.jar:/home/vinicius/.m2/repository/commons-logging/commons-logging/1.3.6/commons-logging-1.3.6.jar:/home/vinicius/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/home/vinicius/.m2/repository/org/springframework/spring-expression/7.0.8/spring-expression-7.0.8.jar:/home/vinicius/.m2/repository/io/micrometer/micrometer-observation/1.17.0/micrometer-observation-1.17.0.jar:/home/vinicius/.m2/repository/io/micrometer/micrometer-commons/1.17.0/micrometer-commons-1.17.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-data-jpa-test/4.1.0/spring-boot-starter-data-jpa-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-test/4.1.0/spring-boot-starter-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-test/4.1.0/spring-boot-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-test-autoconfigure/4.1.0/spring-boot-test-autoconfigure-4.1.0.jar:/home/vinicius/.m2/repository/com/jayway/jsonpath/json-path/2.10.0/json-path-2.10.0.jar:/home/vinicius/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/4.0.5/jakarta.xml.bind-api-4.0.5.jar:/home/vinicius/.m2/repository/jakarta/activation/jakarta.activation-api/2.1.4/jakarta.activation-api-2.1.4.jar:/home/vinicius/.m2/repository/net/minidev/json-smart/2.6.0/json-smart-2.6.0.jar:/home/vinicius/.m2/repository/net/minidev/accessors-smart/2.6.0/accessors-smart-2.6.0.jar:/home/vinicius/.m2/repository/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar:/home/vinicius/.m2/repository/org/assertj/assertj-core/3.27.7/assertj-core-3.27.7.jar:/home/vinicius/.m2/repository/net/bytebuddy/byte-buddy/1.18.10/byte-buddy-1.18.10.jar:/home/vinicius/.m2/repository/org/awaitility/awaitility/4.3.0/awaitility-4.3.0.jar:/home/vinicius/.m2/repository/org/hamcrest/hamcrest/3.0/hamcrest-3.0.jar:/home/vinicius/.m2/repository/org/junit/jupiter/junit-jupiter/6.0.3/junit-jupiter-6.0.3.jar:/home/vinicius/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.0.3/junit-jupiter-api-6.0.3.jar:/home/vinicius/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/vinicius/.m2/repository/org/junit/platform/junit-platform-commons/6.0.3/junit-platform-commons-6.0.3.jar:/home/vinicius/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/vinicius/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.0.3/junit-jupiter-params-6.0.3.jar:/home/vinicius/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.0.3/junit-jupiter-engine-6.0.3.jar:/home/vinicius/.m2/repository/org/junit/platform/junit-platform-engine/6.0.3/junit-platform-engine-6.0.3.jar:/home/vinicius/.m2/repository/org/mockito/mockito-core/5.23.0/mockito-core-5.23.0.jar:/home/vinicius/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.10/byte-buddy-agent-1.18.10.jar:/home/vinicius/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/home/vinicius/.m2/repository/org/mockito/mockito-junit-jupiter/5.23.0/mockito-junit-jupiter-5.23.0.jar:/home/vinicius/.m2/repository/org/skyscreamer/jsonassert/1.5.3/jsonassert-1.5.3.jar:/home/vinicius/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar:/home/vinicius/.m2/repository/org/springframework/spring-test/7.0.8/spring-test-7.0.8.jar:/home/vinicius/.m2/repository/org/xmlunit/xmlunit-core/2.11.0/xmlunit-core-2.11.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc-test/4.1.0/spring-boot-starter-jdbc-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-jdbc-test/4.1.0/spring-boot-jdbc-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-data-jpa-test/4.1.0/spring-boot-data-jpa-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-jpa-test/4.1.0/spring-boot-jpa-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-webmvc-test/4.1.0/spring-boot-starter-webmvc-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-starter-jackson-test/4.1.0/spring-boot-starter-jackson-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-webmvc-test/4.1.0/spring-boot-webmvc-test-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-web-server/4.1.0/spring-boot-web-server-4.1.0.jar:/home/vinicius/.m2/repository/org/springframework/boot/spring-boot-resttestclient/4.1.0/spring-boot-resttestclient-4.1.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
-    <property name="surefire.real.class.path" value="/home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire/surefirebooter-20260817141147851_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/vinicius/Documentos/projetos/lava-jato-backend/target/surefire/surefirebooter-20260817205700294_3.jar"/>
     <property name="polyglot.engine.WarnInterpreterOnly" value="false"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.12+8-1-deb13u1-Debian"/>
@@ -51,7 +51,7 @@
     <property name="user.dir" value="/home/vinicius/Documentos/projetos/lava-jato-backend"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="18930"/>
+    <property name="PID" value="22486"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
@@ -63,8 +63,8 @@
     <property name="java.class.version" value="65.0"/>
     <property name="LOGGED_APPLICATION_NAME" value="[lavajato-backend] "/>
   </properties>
-  <testcase name="contextLoads" classname="com.lavajato.LavajatoBackendApplicationTests" time="0.018">
-    <error message="Failed to load ApplicationContext for [WebMergedContextConfiguration@1de30c31 testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@1de30c31 testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+  <testcase name="contextLoads" classname="com.lavajato.LavajatoBackendApplicationTests" time="0.015">
+    <error message="Failed to load ApplicationContext for [WebMergedContextConfiguration@246de37e testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [&quot;org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true&quot;], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = &quot;src/main/webapp&quot;, contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]" type="java.lang.IllegalStateException"><![CDATA[java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@246de37e testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:195)
 	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160)
@@ -87,14 +87,14 @@
 	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
@@ -114,14 +114,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167)
 	... 21 more
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815)
@@ -133,14 +133,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309)
 	... 36 more
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399)
@@ -165,14 +165,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811)
 	... 43 more
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:251)
@@ -184,8 +184,8 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65)
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391)
 	... 63 more
-Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
+Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
@@ -202,11 +202,11 @@ Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próxi
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:207)
 	... 69 more
 ]]></error>
-    <system-out><![CDATA[14:11:48.956 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lavajato.LavajatoBackendApplicationTests]: LavajatoBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:11:49.073 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lavajato.LavajatoBackendApplication for test class com.lavajato.LavajatoBackendApplicationTests
-14:11:49.170 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lavajato.LavajatoBackendApplicationTests]: LavajatoBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-14:11:49.172 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lavajato.LavajatoBackendApplication for test class com.lavajato.LavajatoBackendApplicationTests
-14:11:49.257 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+    <system-out><![CDATA[20:57:01.211 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lavajato.LavajatoBackendApplicationTests]: LavajatoBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:57:01.308 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lavajato.LavajatoBackendApplication for test class com.lavajato.LavajatoBackendApplicationTests
+20:57:01.387 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lavajato.LavajatoBackendApplicationTests]: LavajatoBackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:57:01.390 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lavajato.LavajatoBackendApplication for test class com.lavajato.LavajatoBackendApplicationTests
+20:57:01.459 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -217,43 +217,43 @@ Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próxi
 
  :: Spring Boot ::                (v4.1.0)
 
-2026-08-17T14:11:49.581-03:00  INFO 18930 --- [lavajato-backend] [           main] c.l.LavajatoBackendApplicationTests      : Starting LavajatoBackendApplicationTests using Java 21.0.12 with PID 18930 (started by vinicius in /home/vinicius/Documentos/projetos/lava-jato-backend)
-2026-08-17T14:11:49.582-03:00  INFO 18930 --- [lavajato-backend] [           main] c.l.LavajatoBackendApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2026-08-17T14:11:50.212-03:00  INFO 18930 --- [lavajato-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-08-17T14:11:50.271-03:00  INFO 18930 --- [lavajato-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50 ms. Found 5 JPA repository interfaces.
-2026-08-17T14:11:50.920-03:00  INFO 18930 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-08-17T14:11:51.437-03:00  INFO 18930 --- [lavajato-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@678586f0
-2026-08-17T14:11:51.438-03:00  INFO 18930 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-08-17T14:11:51.468-03:00  INFO 18930 --- [lavajato-backend] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/lavajato (PostgreSQL 17.11)
-2026-08-17T14:11:51.568-03:00  INFO 18930 --- [lavajato-backend] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 3 migrations (execution time 00:00.038s)
-2026-08-17T14:11:51.600-03:00  INFO 18930 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
-2026-08-17T14:11:51.628-03:00  INFO 18930 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - insert tabela cliente"
-2026-08-17T14:11:51.669-03:00 ERROR 18930 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Migration of schema "public" to version "3 - insert tabela cliente" failed! Changes successfully rolled back.
-2026-08-17T14:11:51.679-03:00  WARN 18930 --- [lavajato-backend] [           main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+2026-08-17T20:57:01.770-03:00  INFO 22486 --- [lavajato-backend] [           main] c.l.LavajatoBackendApplicationTests      : Starting LavajatoBackendApplicationTests using Java 21.0.12 with PID 22486 (started by vinicius in /home/vinicius/Documentos/projetos/lava-jato-backend)
+2026-08-17T20:57:01.772-03:00  INFO 22486 --- [lavajato-backend] [           main] c.l.LavajatoBackendApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2026-08-17T20:57:02.376-03:00  INFO 22486 --- [lavajato-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-17T20:57:02.438-03:00  INFO 22486 --- [lavajato-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 5 JPA repository interfaces.
+2026-08-17T20:57:02.963-03:00  INFO 22486 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-17T20:57:03.321-03:00  INFO 22486 --- [lavajato-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@64ec1459
+2026-08-17T20:57:03.322-03:00  INFO 22486 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-17T20:57:03.342-03:00  INFO 22486 --- [lavajato-backend] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/lavajato (PostgreSQL 17.11)
+2026-08-17T20:57:03.410-03:00  INFO 22486 --- [lavajato-backend] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.029s)
+2026-08-17T20:57:03.465-03:00  INFO 22486 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 2
+2026-08-17T20:57:03.492-03:00  INFO 22486 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "3 - create insert tabela veiculo"
+2026-08-17T20:57:03.526-03:00 ERROR 22486 --- [lavajato-backend] [           main] o.f.core.internal.command.DbMigrate      : Migration of schema "public" to version "3 - create insert tabela veiculo" failed! Changes successfully rolled back.
+2026-08-17T20:57:03.533-03:00  WARN 22486 --- [lavajato-backend] [           main] o.s.w.c.s.GenericWebApplicationContext   : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
-2026-08-17T14:11:51.680-03:00  INFO 18930 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-08-17T14:11:51.686-03:00  INFO 18930 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-08-17T14:11:51.710-03:00  INFO 18930 --- [lavajato-backend] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-08-17T20:57:03.534-03:00  INFO 22486 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-17T20:57:03.546-03:00  INFO 22486 --- [lavajato-backend] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-17T20:57:03.567-03:00  INFO 22486 --- [lavajato-backend] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-08-17T14:11:51.727-03:00 ERROR 18930 --- [lavajato-backend] [           main] o.s.boot.SpringApplication               : Application run failed
+2026-08-17T20:57:03.582-03:00 ERROR 22486 --- [lavajato-backend] [           main] o.s.boot.SpringApplication               : Application run failed
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -358,14 +358,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -377,14 +377,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 101 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399) ~[flyway-core-12.4.0.jar:na]
@@ -409,14 +409,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 108 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:251) ~[flyway-core-12.4.0.jar:na]
@@ -428,8 +428,8 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65) ~[flyway-core-12.4.0.jar:na]
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391) ~[flyway-core-12.4.0.jar:na]
 	... 128 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
+Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904) ~[postgresql-42.7.11.jar:42.7.11]
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589) ~[postgresql-42.7.11.jar:42.7.11]
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431) ~[postgresql-42.7.11.jar:42.7.11]
@@ -446,9 +446,9 @@ Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próxi
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:207) ~[flyway-core-12.4.0.jar:na]
 	... 134 common frames omitted
 
-2026-08-17T14:11:51.736-03:00  WARN 18930 --- [lavajato-backend] [           main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.lavajato.LavajatoBackendApplicationTests@1cc93da4]
+2026-08-17T20:57:03.592-03:00  WARN 22486 --- [lavajato-backend] [           main] o.s.test.context.TestContextManager      : Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [com.lavajato.LavajatoBackendApplicationTests@19647566]
 
-java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@1de30c31 testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@246de37e testClass = com.lavajato.LavajatoBackendApplicationTests, locations = [], classes = [com.lavajato.LavajatoBackendApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1bc715b8, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2c3dec30, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@7c56e013, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@659eef7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@1c9f0a20, org.springframework.boot.test.context.SpringBootTestAnnotation@910cb8c7], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:195) ~[spring-test-7.0.8.jar:7.0.8]
 	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214) ~[spring-test-7.0.8.jar:7.0.8]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160) ~[spring-test-7.0.8.jar:7.0.8]
@@ -536,14 +536,14 @@ java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMerge
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.5.6.jar:3.5.6]
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.5.6.jar:3.5.6]
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.5.6.jar:3.5.6]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -563,14 +563,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247) ~[spring-test-7.0.8.jar:7.0.8]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167) ~[spring-test-7.0.8.jar:7.0.8]
 	... 86 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1815) ~[spring-beans-7.0.8.jar:7.0.8]
@@ -582,14 +582,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 101 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399) ~[flyway-core-12.4.0.jar:na]
@@ -614,14 +614,14 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1862) ~[spring-beans-7.0.8.jar:7.0.8]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1811) ~[spring-beans-7.0.8.jar:7.0.8]
 	... 108 common frames omitted
-Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__insert_tabela_cliente.sql
-------------------------------------------------------
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Failed to execute script V3__create_insert_tabela_veiculo.sql
+-------------------------------------------------------------
 SQL State  : 42601
 Error Code : 0
-Message    : ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
-Location   : db/migration/V3__insert_tabela_cliente.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__insert_tabela_cliente.sql)
-Line       : 1
+Message    : ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
+Location   : db/migration/V3__create_insert_tabela_veiculo.sql (/home/vinicius/Documentos/projetos/lava-jato-backend/target/classes/db/migration/V3__create_insert_tabela_veiculo.sql)
+Line       : 14
 Statement  : Run Flyway with -X option to see the actual statement causing the problem
 
 	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:251) ~[flyway-core-12.4.0.jar:na]
@@ -633,8 +633,8 @@ Statement  : Run Flyway with -X option to see the actual statement causing the p
 	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65) ~[flyway-core-12.4.0.jar:na]
 	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391) ~[flyway-core-12.4.0.jar:na]
 	... 128 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a "INSERT"
-  Posição: 338
+Caused by: org.postgresql.util.PSQLException: ERRO: erro de sintaxe em ou próximo a ";"
+  Posição: 844
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904) ~[postgresql-42.7.11.jar:42.7.11]
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589) ~[postgresql-42.7.11.jar:42.7.11]
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431) ~[postgresql-42.7.11.jar:42.7.11]

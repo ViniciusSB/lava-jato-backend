@@ -16,11 +16,14 @@ com/lavajato/model/Veiculo.class
 com/lavajato/service/OrdemServicoService.class
 com/lavajato/model/Usuario.class
 com/lavajato/model/Cliente.class
+com/lavajato/model/Estabelecimento.class
 com/lavajato/model/OrdemServico.class
 com/lavajato/controller/OrdemServicoController.class
 com/lavajato/service/VeiculoService.class
+com/lavajato/dto/ordemServico/OrdemServicoResponse.class
 com/lavajato/model/Veiculo$tipoVeiculo.class
 com/lavajato/LavajatoBackendApplication.class
 com/lavajato/repository/UsuarioRepository.class
+com/lavajato/dto/ordemServico/ClienteOrdemServico.class
 com/lavajato/repository/ClienteRepository.class
 com/lavajato/controller/VeiculoController.class
