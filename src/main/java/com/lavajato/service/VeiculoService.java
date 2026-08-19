@@ -49,7 +49,8 @@ public class VeiculoService {
         return veiculo;
     }
 
-    public Veiculo atualizarVeiculo(Long id, Map<String, Object> dados) {
+    public Veiculo atualizarVeiculo(Map<String, Object> dados) {
+        Long id = Long.parseLong(dados.get("id").toString());
         Veiculo veiculo = veiculoRepository.findById(id).orElse(null);
         if (veiculo != null) {
             String modelo = (String) dados.get("modelo");

@@ -56,7 +56,8 @@ public class ClienteService {
         return cliente;
     }
 
-    public Cliente atualizarCliente(Long id, Map<String, Object> dados) {
+    public Cliente atualizarCliente(Map<String, Object> dados) {
+        Long id = Long.parseLong(dados.get("id").toString());
         Cliente cliente = clienteRepository.findById(id).orElse(null);
         if (cliente == null) {
             return null;
