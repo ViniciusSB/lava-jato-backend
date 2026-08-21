@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClienteOrdemServico {
     private Long id;
+    private String nome;
     private String celular;
     private Integer fidelidade;
 }

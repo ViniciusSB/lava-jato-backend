@@ -94,6 +94,7 @@ public class VeiculoService {
             response.setPlaca(veiculo.getPlaca());
             response.setTipo(veiculo.getTipo() != null ? veiculo.getTipo().toString() : null);
             response.setClienteId(veiculo.getCliente() != null ? veiculo.getCliente().getId() : null);
+            response.setClienteNome(veiculo.getCliente() != null ? veiculo.getCliente().getNome() : null);
             return response;
         }
         return null;
@@ -110,6 +111,7 @@ public class VeiculoService {
             response.setPlaca(v.getPlaca());
             response.setTipo(v.getTipo() != null ? v.getTipo().toString() : null);
             response.setClienteId(v.getCliente() != null ? v.getCliente().getId() : null);
+            response.setClienteNome(v.getCliente() != null ? v.getCliente().getNome() : null);
             return response;
         }).collect(Collectors.toList());
     }

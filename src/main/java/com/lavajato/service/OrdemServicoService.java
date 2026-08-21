@@ -183,7 +183,7 @@ public class OrdemServicoService {
         OrdemServicoResponse response = new OrdemServicoResponse();
         response.setId(ordemServico.getId());
         response.setFuncionario(new UsuarioResponse(ordemServico.getFuncionario().getId(), ordemServico.getFuncionario().getNome(), ordemServico.getFuncionario().getEmail(), ordemServico.getFuncionario().getTipoUsuario().toString()));
-        response.setCliente(new ClienteOrdemServico(ordemServico.getCliente().getId(),ordemServico.getCliente().getCelular(), ordemServico.getCliente().getFidelidade()));
+        response.setCliente(new ClienteOrdemServico(ordemServico.getCliente().getId(),ordemServico.getCliente().getNome(), ordemServico.getCliente().getCelular(), ordemServico.getCliente().getFidelidade()));
         response.setVeiculo(ordemServico.getVeiculo());
         response.setServico(ordemServico.getServico());
         response.setPreco(ordemServico.getPreco());

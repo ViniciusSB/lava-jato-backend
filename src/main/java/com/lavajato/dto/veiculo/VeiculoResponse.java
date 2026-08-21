@@ -11,4 +11,5 @@ public class VeiculoResponse {
     private String placa;
     private String tipo;
     private Long clienteId;
+    private String clienteNome;
 }
