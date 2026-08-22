@@ -6,7 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,12 +39,12 @@ public class ServicoController {
 
     @PutMapping("/atualizar") 
     public ResponseEntity<Servico> atualizar(@RequestBody Map<String, Object> dados) {
-        Servico servico = servicoService.criar(dados);
+        Servico servico = servicoService.atualizar(dados);
         return ResponseEntity.status(HttpStatus.OK).body(servico);
     }
 
-    @PutMapping("/deletar") 
-    public ResponseEntity<Void> deletar(Long id) {
+    @DeleteMapping("/deletar/{id}") 
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
         boolean sucesso = servicoService.deletar(id);
         if (sucesso)
             return ResponseEntity.noContent().build();
