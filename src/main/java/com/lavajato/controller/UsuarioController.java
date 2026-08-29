@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lavajato.dto.dashboard.funcionario.DashboardFuncionarioRequest;
-import com.lavajato.dto.dashboard.funcionario.DashboardFuncionarioResponse;
 import com.lavajato.dto.usuario.UsuarioRequest;
 import com.lavajato.dto.usuario.UsuarioResponse;
 import com.lavajato.service.UsuarioService;
@@ -62,9 +60,4 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/dashboardFuncionario/{id}") 
-    public ResponseEntity<DashboardFuncionarioResponse> dashboardFuncionarioId(@PathVariable Long id, @RequestBody DashboardFuncionarioRequest request) {
-        DashboardFuncionarioResponse informacoes = usuarioService.dashboardFuncionario(id, request);
-        return ResponseEntity.ok().body(informacoes);
-    }
 }
