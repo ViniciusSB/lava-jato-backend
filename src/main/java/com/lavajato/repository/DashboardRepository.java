@@ -19,7 +19,7 @@ public interface DashboardRepository extends JpaRepository<OrdemServico, Long> {
             FROM usuario u
             LEFT JOIN ordem_servico os ON u.id = os.funcionario_id AND os.status = 'FINALIZADO'
             AND (:dia IS NULL OR EXTRACT(DAY FROM os.data_atualizacao) = :dia)
-            AND (:mes IS NULL OR EXTRACT(MONTH FROM os.data_atualizacao) = :dia)
+            AND (:mes IS NULL OR EXTRACT(MONTH FROM os.data_atualizacao) = :mes)
             AND (:ano IS NULL OR EXTRACT(YEAR FROM os.data_atualizacao) = :ano)
             GROUP BY u.nome, u.tipo_usuario
             ORDER BY count(os.id) DESC;

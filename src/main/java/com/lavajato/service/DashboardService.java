@@ -314,12 +314,6 @@ public class DashboardService {
 
         DashboardGerenteResponseDTO dto = new DashboardGerenteResponseDTO(dadosGerais, atendimento, faturamento);
 
-        Map<String, Object> dadosss = Map.of(
-                "dadosFuncionarios", dadosFuncionarios,
-                "dadosFaturamento", dadosFaturamento,
-                "dadosServico", dadosServico,
-                "dadosVeiculos", dadosVeiculos);
-
         return dto;
     }
 }
