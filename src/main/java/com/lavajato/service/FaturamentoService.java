@@ -26,7 +26,7 @@ public class FaturamentoService {
     public void gerarFaturamento(OrdemServico ordemServico) {
         Faturamento faturamento = new Faturamento();
         Integer porcFunc = estabelecimentoRepository.obterPorcentagem(1L);
-        double ganhoFunc = (porcFunc * 0.01) * ordemServico.getPreco();
+        double ganhoFunc = ordemServico.getPreco() != 0 ? (porcFunc * 0.01) *  ordemServico.getPreco() : (porcFunc * 0.01) * (ordemServico.getServico().getPrecoBase() + 15);
         double totalLiquido = ordemServico.getPreco() - ganhoFunc;
 
         faturamento.setValorBruto(BigDecimal.valueOf(ordemServico.getPreco()));

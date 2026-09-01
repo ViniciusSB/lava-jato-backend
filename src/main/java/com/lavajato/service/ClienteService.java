@@ -88,7 +88,7 @@ public class ClienteService {
     }
 
     public List<Cliente> listarTodos() {
-        return clienteRepository.findAll();
+        return clienteRepository.findAllByOrderById();
     }
 
     public boolean deletarCliente(Long id) {

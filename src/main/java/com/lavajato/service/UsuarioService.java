@@ -41,7 +41,7 @@ public class UsuarioService {
     }
 
     public List<UsuarioResponse> listarUsuarios() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<Usuario> usuarios = usuarioRepository.findAllByOrderById();
         return usuarios.stream().map(u -> {
             UsuarioResponse response = new UsuarioResponse(u.getId(), u.getNome(),
                     u.getEmail(), u.getTipoUsuario().toString());

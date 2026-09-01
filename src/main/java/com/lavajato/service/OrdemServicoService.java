@@ -1,5 +1,6 @@
 package com.lavajato.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -62,27 +63,9 @@ public class OrdemServicoService {
         ordemServico.setEnderecoEntrega(enderecoEntrega);
         ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(OrdemServico.Status.EM_ANDAMENTO);
+        ordemServico.setDataCriacao(LocalDateTime.now());
 
-        if (cliente.getFidelidade() == 10) {
-            ordemServico.setPreco(0);
-        } else {
-            switch (veiculo.getTipo().toString()) {
-                case "MOTO":
-                    ordemServico.setPreco(servico.getPrecoBase());
-                    break;
-                case "CARRO":
-                    ordemServico.setPreco(servico.getPrecoBase() + 15);
-                    break;
-                case "CAMINHONETE":
-                    ordemServico.setPreco(servico.getPrecoBase() + 25);
-                    break;
-                case "CAMINHAO":
-                    ordemServico.setPreco(servico.getPrecoBase() + 40);
-                    break;
-                default:
-                    break;
-            }
-        }
+        ordemServico = gerarPrecoOrdemServico(ordemServico);
         
         ordemServico = ordemServicoRepository.save(ordemServico);
         return ordemServicoToResponse(ordemServico);
@@ -116,37 +99,11 @@ public class OrdemServicoService {
         ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(status != null ? OrdemServico.Status.valueOf(status.toUpperCase()) : ordemServico.getStatus());
 
-        if (cliente.getFidelidade() == 10) {
-            ordemServico.setPreco(0);
-        } else {
-            switch (veiculo.getTipo().toString()) {
-                case "MOTO":
-                    ordemServico.setPreco(servico.getPrecoBase());
-                    break;
-                case "CARRO":
-                    ordemServico.setPreco(servico.getPrecoBase() + 15);
-                    break;
-                case "CAMINHONETE":
-                    ordemServico.setPreco(servico.getPrecoBase() + 25);
-                    break;
-                case "CAMINHAO":
-                    ordemServico.setPreco(servico.getPrecoBase() + 40);
-                    break;
-                default:
-                    break;
-            }
-        }
+        ordemServico = gerarPrecoOrdemServico(ordemServico);
 
-        if (ordemServico.getStatus() == OrdemServico.Status.FINALIZADO) {
-            if (cliente.getFidelidade() == 10) {
-                cliente.setFidelidade(0);
-                clienteRepository.save(cliente);
-            } else {
-                cliente.setFidelidade(cliente.getFidelidade() + 1);
-                clienteRepository.save(cliente);
-            }
-            faturamentoService.gerarFaturamento(ordemServico);
-        }
+        ordemServico = atualizarFidelidadeCliente(ordemServico);
+
+        ordemServico.setDataAtualizacao(LocalDateTime.now());
 
         ordemServico = ordemServicoRepository.save(ordemServico);
         
@@ -192,6 +149,44 @@ public class OrdemServicoService {
         response.setEntregaDomicilio(ordemServico.isEntregaDomicilio());
         response.setEnderecoEntrega(ordemServico.getEnderecoEntrega());
         return response;
+    }
+
+    public OrdemServico gerarPrecoOrdemServico(OrdemServico ordemServico) {
+        if (ordemServico.getCliente().getFidelidade() == 10) {
+            ordemServico.setPreco(0);
+        } else {
+            switch (ordemServico.getVeiculo().getTipo().toString()) {
+                case "MOTO":
+                    ordemServico.setPreco(ordemServico.getServico().getPrecoBase());
+                    break;
+                case "CARRO":
+                    ordemServico.setPreco(ordemServico.getServico().getPrecoBase() + 15);
+                    break;
+                case "CAMINHONETE":
+                    ordemServico.setPreco(ordemServico.getServico().getPrecoBase() + 25);
+                    break;
+                case "CAMINHAO":
+                    ordemServico.setPreco(ordemServico.getServico().getPrecoBase() + 40);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return ordemServico;
+    }
+
+    public OrdemServico atualizarFidelidadeCliente(OrdemServico ordemServico) {
+        if (ordemServico.getStatus() == OrdemServico.Status.FINALIZADO) {
+            if (ordemServico.getCliente().getFidelidade() == 10) {
+                ordemServico.getCliente().setFidelidade(0);
+                clienteRepository.save(ordemServico.getCliente());
+            } else {
+                ordemServico.getCliente().setFidelidade(ordemServico.getCliente().getFidelidade() + 1);
+                clienteRepository.save(ordemServico.getCliente());
+            }
+            faturamentoService.gerarFaturamento(ordemServico);
+        }
+        return ordemServico;
     }
     
 }

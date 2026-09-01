@@ -45,12 +45,10 @@ public class OrdemServico {
 
     private LocalDateTime dataAtualizacao;
 
-    @PrePersist
     public void prePersist() {
         this.dataCriacao = LocalDateTime.now();
     }
 
-    @PreUpdate
     public void preUpdate() {
         this.dataAtualizacao = LocalDateTime.now();
     }

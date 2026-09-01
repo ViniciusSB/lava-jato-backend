@@ -265,7 +265,7 @@ public class DashboardService {
                         g.setHora(periodo.equals("dia") ? entry.getKey() : "");
                         return g;
                     })
-                    .sorted(Comparator.comparingInt(e -> Integer.parseInt(e.getDia())))
+                    .sorted(Comparator.comparing(periodo.equals("mes") ? e -> Integer.parseInt(e.getDia()) : e -> Integer.parseInt(e.getMes())))
                     .collect(Collectors.toList());
     }
 
@@ -312,9 +312,9 @@ public class DashboardService {
             return gf;
         });
         if (periodo.equals("ano")) {
-            return retorno.sorted(Comparator.comparing(c -> c.getMes())).collect(Collectors.toList());
+            return retorno.sorted(Comparator.comparing(c -> Integer.parseInt(c.getMes()))).collect(Collectors.toList());
         } else if (periodo.equals("mes")) {
-            return retorno.sorted(Comparator.comparing(c -> c.getDia())).collect(Collectors.toList());
+            return retorno.sorted(Comparator.comparing(c -> Integer.parseInt(c.getDia()))).collect(Collectors.toList());
         } else {
             return retorno.sorted(Comparator.comparing(c -> c.getHora())).collect(Collectors.toList());
         }

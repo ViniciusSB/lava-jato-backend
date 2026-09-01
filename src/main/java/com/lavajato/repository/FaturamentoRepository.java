@@ -8,4 +8,5 @@ import com.lavajato.model.Faturamento;
 @Repository
 public interface FaturamentoRepository extends JpaRepository<Faturamento, Long>{
     
+    public Faturamento findByOrdemServicoId(Long id);
 }
