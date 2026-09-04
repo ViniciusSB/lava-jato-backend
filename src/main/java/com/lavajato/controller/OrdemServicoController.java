@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.ordemServico.OrdemServicoPaginadoResponse;
 import com.lavajato.dto.ordemServico.OrdemServicoResponse;
 import com.lavajato.service.OrdemServicoService;
 
@@ -37,9 +38,9 @@ public class OrdemServicoController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/listar")
-    public ResponseEntity<List<OrdemServicoResponse>> atualizarOrdemServico() {
-        List<OrdemServicoResponse> responses = ordemServicoService.listar();
+    @PostMapping("/listar")
+    public ResponseEntity<OrdemServicoPaginadoResponse> listarOrdemServico(@RequestBody Map<String, Object> filtros) {
+        OrdemServicoPaginadoResponse responses = ordemServicoService.listar(filtros);
         return ResponseEntity.status(HttpStatus.OK).body(responses);
     }
 

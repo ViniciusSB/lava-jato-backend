@@ -15,14 +15,14 @@ public class AuthService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public boolean validarLogin(Map<String, Object> dados) {
+    public Usuario validarLogin(Map<String, Object> dados) {
         String email = (String) dados.get("email");
         String senha = (String) dados.get("senha");
         Usuario usuario = usuarioRepository.findByEmail(email);
-        boolean validado = SenhaUtil.validarSenha(senha, usuario.getSenha());
+        boolean validado = usuario != null ? SenhaUtil.validarSenha(senha, usuario.getSenha()) : false;
         if (validado)
-            return true;
+            return usuario;
         else 
-            return false;
+            return null;
     }
 }

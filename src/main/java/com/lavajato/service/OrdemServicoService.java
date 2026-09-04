@@ -1,6 +1,7 @@
 package com.lavajato.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lavajato.dto.ordemServico.ClienteOrdemServico;
+import com.lavajato.dto.ordemServico.OrdemServicoPaginadoResponse;
 import com.lavajato.dto.ordemServico.OrdemServicoResponse;
 import com.lavajato.dto.usuario.UsuarioResponse;
 import com.lavajato.model.Cliente;
@@ -110,12 +112,69 @@ public class OrdemServicoService {
         return ordemServicoToResponse(ordemServico);
     }
 
-    public List<OrdemServicoResponse> listar() {
-        List<OrdemServico> ordemServicos = ordemServicoRepository.findAll();
-        return ordemServicos.stream().map(os -> {
+    public OrdemServicoPaginadoResponse listar(Map<String, Object> filtros) {
+        List<OrdemServico> ordemServicos = new ArrayList<>();
+
+        String tipo = filtros.get("tipo") != null ? filtros.get("tipo").toString() : "";
+        String termo = filtros.get("termo") != null ? filtros.get("termo").toString() : "";
+        Long paginacao = filtros.get("paginacao") != null ? Long.parseLong(filtros.get("paginacao").toString()) : 10;
+        Long pagina = filtros.get("pagina") != null ? Long.parseLong(filtros.get("pagina").toString()) : 1;
+
+        Long contagem = 0L;
+        long totalPaginas = 0;
+        Long offset = (pagina - 1) == 0 ? 0 : (pagina - 1) * paginacao;
+
+        switch (tipo) {
+            case "cliente":
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoCliente(paginacao, offset, termo);
+                contagem = ordemServicoRepository.contarOrdensServicoCliente(termo);
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+            case "veiculo":
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoVeiculo(paginacao, offset, termo);
+                contagem = ordemServicoRepository.contarOrdensServicoVeiculo(termo);
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+            case "funcionario":
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoFuncionario(paginacao, offset, termo);
+                contagem = ordemServicoRepository.contarOrdensServicoFuncionario(termo);
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+            case "servico":
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoServico(paginacao, offset, termo);
+                contagem = ordemServicoRepository.contarOrdensServicoServico(termo);
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+            case "status":
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoStatus(paginacao, offset, termo);
+                contagem = ordemServicoRepository.contarOrdensServicoStatus(termo);
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+            default:
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginado(paginacao, offset);
+                contagem = ordemServicoRepository.count();
+                totalPaginas = contagem / paginacao;
+                if (contagem % paginacao > 0)
+                    totalPaginas += 1;
+                break;
+        }
+
+        List<OrdemServicoResponse> lista = ordemServicos.stream().map(os -> {
             OrdemServicoResponse response = ordemServicoToResponse(os);
             return response;
         }).collect(Collectors.toList());
+        OrdemServicoPaginadoResponse ospr = new OrdemServicoPaginadoResponse(contagem, totalPaginas, pagina, lista);
+        return ospr;
     }
 
     public OrdemServicoResponse listarPorId(Long id) {
