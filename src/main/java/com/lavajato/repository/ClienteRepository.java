@@ -11,6 +11,4 @@ import com.lavajato.model.Cliente;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     List<Cliente> findAllByOrderById();
-
-    
 }
