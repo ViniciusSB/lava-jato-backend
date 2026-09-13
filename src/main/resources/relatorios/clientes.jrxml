@@ -1,0 +1,179 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="clientes" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="e115bc59-fd0f-446b-a585-04725e27d7f0">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2xpZW50ZSAsMjUsMjUsMWMwZDA5OGQtZDZlNS00NTc0LWFmNzEtMzQ1NjVmOGY1N2NhO2ZhdHVy&#xa;YW1lbnRvICwyNSwyNzIsZjAyNDQ1MjQtZjRiNS00OGYxLWIwMDEtMDY4ZTZmMDM0OWM5O29yZGVt&#xa;X3NlcnZpY28gLDIyNiwxODIsOTEwNTRhYmEtZTI1MS00MmZkLWJlMTUtMTUwMmEwZDQzZWZiOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lavajato"/>
+	<style name="Title" fontName="Arial" fontSize="26.0" bold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18.0"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12.0" bold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12.0"/>
+	<query language="SQL"><![CDATA[SELECT c.nome,
+	c.celular,
+	c.fidelidade,
+	COUNT( os.id) AS lavagens,
+	SUM( f.valor_liquido) AS total_liquido,
+	MAX( os.data_atualizacao) AS ultima_lavagem_concluida
+FROM cliente c
+	LEFT JOIN ordem_servico os ON 
+	 c.id = os.cliente_id 
+	 AND os.status = 'FINALIZADO' 
+	LEFT JOIN faturamento f ON 
+	 f.ordem_servico_id = os.id 
+GROUP BY c.id,
+	c.nome,
+	c.celular,
+	c.fidelidade
+ORDER BY lavagens DESC]]></query>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="celular" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="celular"/>
+		<property name="com.jaspersoft.studio.field.label" value="celular"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="fidelidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="fidelidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="fidelidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="lavagens" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="lavagens"/>
+		<property name="com.jaspersoft.studio.field.label" value="lavagens"/>
+	</field>
+	<field name="total_liquido" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_liquido"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_liquido"/>
+	</field>
+	<field name="ultima_lavagem_concluida" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="ultima_lavagem_concluida"/>
+		<property name="com.jaspersoft.studio.field.label" value="ultima_lavagem_concluida"/>
+	</field>
+	<variable name="Somar_total_liquido" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{total_liquido}]]></expression>
+	</variable>
+	<variable name="Hora" class="java.lang.String">
+		<expression><![CDATA[$F{ultima_lavagem_concluida}.toString().split("T")[1].substring(0,5)]]></expression>
+	</variable>
+	<variable name="Data" class="java.lang.String">
+		<expression><![CDATA[$F{ultima_lavagem_concluida}.toString().split("T")[0]]]></expression>
+	</variable>
+	<background height="575" splitType="Stretch">
+		<element kind="textField" uuid="27a38dd8-a8a1-4d89-a415-9fc33e178ee2" x="702" y="560" width="100" height="15" pattern="M/d/yy h:mm a" vTextAlign="Middle">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="ecbabfa7-0461-4e25-88a7-0fb78d9e0ab2" x="502" y="560" width="100" height="15" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Página " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="21bc260e-4b35-48f6-a1d7-1ad25fba8719" x="602" y="560" width="100" height="15" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[" de " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</background>
+	<title height="104" splitType="Stretch">
+		<element kind="staticText" uuid="26fe96ef-249b-4a7f-932f-a524afd553b0" x="230" y="0" width="402" height="67" fontName="SansSerif" fontSize="54.0" bold="false" hTextAlign="Center" vTextAlign="Middle" style="Title">
+			<text><![CDATA[Clientes]]></text>
+		</element>
+		<element kind="staticText" uuid="efd15e1e-ab10-4b91-9d28-7bbae359e570" x="237" y="67" width="388" height="37" fontName="SansSerif" fontSize="26.0" hTextAlign="Center" style="SubTitle">
+			<text><![CDATA[Faturamento por clientes]]></text>
+		</element>
+		<element kind="image" uuid="0dc3eb45-f808-44b3-b0ff-8e213aa79cc9" x="60" y="7" width="120" height="90">
+			<expression><![CDATA["https://i.imgur.com/jNK3oMX.png"]]></expression>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="frame" uuid="35d90a9b-bb7e-4ec4-bfa2-68be1967d6b2" x="56" y="0" width="705" height="26" backcolor="#666666" mode="Opaque">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<element kind="staticText" uuid="84c933a4-8a39-463b-9d0c-8107e091046c" x="0" y="0" width="117" height="26" fontName="SansSerif" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="326e16ec-5f75-45f0-a829-15e4c8b94b32"/>
+				<text><![CDATA[Nome]]></text>
+			</element>
+			<element kind="staticText" uuid="39cfe765-499b-406b-bb88-61f1b1f81bce" x="117" y="0" width="117" height="26" fontName="SansSerif" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66ec0bc6-e27a-4c13-a93d-e9c0cd971088"/>
+				<text><![CDATA[Celular]]></text>
+			</element>
+			<element kind="staticText" uuid="09acaba7-7f71-489e-aa27-698f3fdfa65c" x="234" y="0" width="117" height="26" fontName="SansSerif" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffd7a88d-09d7-4890-84a7-23a48b4bb315"/>
+				<text><![CDATA[Fidelidade]]></text>
+			</element>
+			<element kind="staticText" uuid="7cd483cd-e4de-43e1-8cec-ca6194ce8df0" x="351" y="0" width="117" height="26" fontName="SansSerif" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b968cb9-17e8-4bed-9da6-cd796a0f65a2"/>
+				<text><![CDATA[Lavagens]]></text>
+			</element>
+			<element kind="staticText" uuid="2b267a0f-4c1e-4086-828e-b0ff27acca7e" x="468" y="0" width="117" height="26" fontName="SansSerif" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="254b2d60-ac85-4500-b983-fa33f95b2bc1"/>
+				<text><![CDATA[Total Líquido]]></text>
+			</element>
+			<element kind="staticText" uuid="93d65d9b-2d4d-49f5-a63f-47a2b201019c" x="585" y="0" width="117" height="26" fontName="SansSerif" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95406d3e-cc2a-4ab3-8283-009d1be0df0f"/>
+				<text><![CDATA[Ultima Lavagem]]></text>
+			</element>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<element kind="frame" uuid="89a3da05-fdde-4ffe-965f-cc476f72e3ab" x="56" y="1" width="704" height="30">
+				<element kind="textField" uuid="4ef9215a-9bd8-4d5d-a1fa-eac8e12b1c71" x="0" y="0" width="117" height="30" fontName="SansSerif" bold="true" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="326e16ec-5f75-45f0-a829-15e4c8b94b32"/>
+					<expression><![CDATA[$F{nome}]]></expression>
+				</element>
+				<element kind="textField" uuid="d85c30a7-e6d1-4216-84b5-8bb837faebe8" x="117" y="0" width="117" height="30" fontName="SansSerif" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66ec0bc6-e27a-4c13-a93d-e9c0cd971088"/>
+					<expression><![CDATA[$F{celular}]]></expression>
+				</element>
+				<element kind="textField" uuid="9297c8bd-4080-4526-abf1-a04e1eb563c5" x="234" y="0" width="117" height="30" fontName="SansSerif" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffd7a88d-09d7-4890-84a7-23a48b4bb315"/>
+					<expression><![CDATA[$F{fidelidade}]]></expression>
+				</element>
+				<element kind="textField" uuid="cfd25c90-0395-45c0-859a-8f6edf41e374" x="351" y="0" width="117" height="30" fontName="SansSerif" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b968cb9-17e8-4bed-9da6-cd796a0f65a2"/>
+					<expression><![CDATA[$F{lavagens}]]></expression>
+				</element>
+				<element kind="textField" uuid="3500d86a-ebcb-4a99-bf84-e747202d7eb6" x="468" y="0" width="118" height="30" fontName="SansSerif" pattern="R$ #,##0.00;R$ -#,##0.00" hTextAlign="Right" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="254b2d60-ac85-4500-b983-fa33f95b2bc1"/>
+					<expression><![CDATA[$F{total_liquido}]]></expression>
+				</element>
+				<element kind="textField" uuid="e6e27e0c-e427-454f-87aa-56a66da32b13" x="586" y="0" width="118" height="30" fontName="SansSerif" hTextAlign="Right" vTextAlign="Middle" style="Detail">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="95406d3e-cc2a-4ab3-8283-009d1be0df0f"/>
+					<expression><![CDATA[$V{Data} + " " + $V{Hora}
+]]></expression>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<columnFooter splitType="Stretch"/>
+	<summary height="50" splitType="Stretch">
+		<element kind="staticText" uuid="7a45a56a-dc11-4b15-bf58-a6261f611c80" x="56" y="0" width="468" height="50" fontSize="14.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<box topPadding="0" leftPadding="0">
+				<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Total]]></text>
+		</element>
+		<element kind="textField" uuid="dc168b4b-c0a4-4862-9729-852cbb6ac826" x="524" y="0" width="118" height="50" fontSize="12.0" pattern="R$ #,##0.00;R$ -#,##0.00" hTextAlign="Right" vTextAlign="Middle">
+			<box topPadding="0" leftPadding="0">
+				<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<expression><![CDATA[$V{Somar_total_liquido}]]></expression>
+		</element>
+		<element kind="staticText" uuid="87b27fba-ee48-4f7f-ab6d-7445f1030d51" x="642" y="0" width="119" height="50" vTextAlign="Middle">
+			<box>
+				<pen lineWidth="0.25" lineStyle="Solid"/>
+				<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[]]></text>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</summary>
+</jasperReport>
