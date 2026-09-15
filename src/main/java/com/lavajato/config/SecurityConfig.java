@@ -30,8 +30,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login").permitAll()
-                        .requestMatchers("/auth/cadastrar").permitAll()
+                        .requestMatchers("/auth/*").permitAll()
+                        .requestMatchers("/admin/*").hasAuthority("ROLE_ADM")
+                        .requestMatchers("/faturamento/*").hasAuthority("ROLE_ADM")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

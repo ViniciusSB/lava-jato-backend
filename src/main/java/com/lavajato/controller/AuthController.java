@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.usuario.UsuarioLoginResponse;
 import com.lavajato.dto.usuario.UsuarioResponse;
 import com.lavajato.model.Usuario;
 import com.lavajato.service.AuthService;
@@ -28,15 +29,18 @@ public class AuthController {
     UsuarioService usuarioService;
     
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, Object> dados) {
+    public ResponseEntity<UsuarioLoginResponse> login(@RequestBody Map<String, Object> dados) {
         Usuario usuario = authService.validarLogin(dados);
+         UsuarioLoginResponse ulr = new UsuarioLoginResponse();;
         if (usuario != null) {
             String email = (String) dados.get("email");
             String token = jwtUtil.generateToken(email);
+            ulr = new UsuarioLoginResponse(usuario.getId(), usuario.getNome(), usuario.getEmail(), token, usuario.getTipoUsuario().toString(), usuario.getUrlFoto(), "Login realizado com sucesso!");
 
-            return ResponseEntity.ok(Map.of("token", token, "tipoUsuario", usuario.getTipoUsuario().toString(),  "idUsuario", usuario.getId()));
+            return ResponseEntity.ok(ulr);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("erro", "Credenciais inválidas"));
+            ulr.setMensagem("Credenciais inválidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ulr);
         }
     }
 

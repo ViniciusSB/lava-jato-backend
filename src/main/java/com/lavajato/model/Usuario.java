@@ -28,6 +28,7 @@ public class Usuario implements UserDetails{
     private String nome;
     private String email;
     private String senha;
+    private String urlFoto;
 
     @Enumerated(EnumType.STRING)
     private tipoUsuario tipoUsuario;
