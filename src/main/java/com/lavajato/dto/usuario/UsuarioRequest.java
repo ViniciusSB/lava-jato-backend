@@ -8,4 +8,5 @@ public class UsuarioRequest {
     private String nome;
     private String email; 
     private String tipo;
+    private String urlFoto;
 }

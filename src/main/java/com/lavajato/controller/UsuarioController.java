@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lavajato.dto.usuario.UsuarioRequest;
 import com.lavajato.dto.usuario.UsuarioResponse;
+import com.lavajato.dto.usuario.UsuarioSenhaRequest;
 import com.lavajato.model.Usuario;
 import com.lavajato.service.UsuarioService;
 
@@ -57,6 +58,17 @@ public class UsuarioController {
         Usuario user = (Usuario) authentication.getPrincipal();
         if (user.getTipoUsuario().toString().equals("ADM") || user.getId() == usuario.getId()) {
             UsuarioResponse response = usuarioService.atualizarUsuario(usuario);
+            return ResponseEntity.ok().body(response);
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
+
+    @PutMapping("/atualizarSenha")
+    public ResponseEntity<UsuarioResponse> atualizarUsuario(@RequestBody UsuarioSenhaRequest request,
+            Authentication authentication) {
+        Usuario user = (Usuario) authentication.getPrincipal();
+        if (user.getTipoUsuario().toString().equals("ADM") || user.getId() == request.getUsuarioId()) {
+            UsuarioResponse response = usuarioService.atualizarSenha(request);
             return ResponseEntity.ok().body(response);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();

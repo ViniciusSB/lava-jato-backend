@@ -12,4 +12,10 @@ public class UsuarioResponse {
     private String nome;
     private String email; 
     private String tipo;
+    private String urlFoto;
+    private String mensagem;
+
+    public UsuarioResponse(String mensagem) {
+        this.mensagem = mensagem;
+    }
 }
