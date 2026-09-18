@@ -1,14 +1,13 @@
 package com.lavajato.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lavajato.dto.cliente.ClienteResponse;
 import com.lavajato.model.Cliente;
-import com.lavajato.model.Veiculo;
 import com.lavajato.repository.ClienteRepository;
 import com.lavajato.repository.VeiculoRepository;
 
@@ -21,10 +20,9 @@ public class ClienteService {
     @Autowired
     VeiculoRepository veiculoRepository;
     
-    public Cliente cadastrarCliente(Map<String, Object> dados) {
+    public ClienteResponse cadastrarCliente(Map<String, Object> dados) {
         String nome = (String) dados.get("nome");
         String celular = (String) dados.get("celular");
-        List<Veiculo> veiculos = new ArrayList<>();
         Integer fidelidade = (Integer) dados.get("fidelidade");
 
         Cliente cliente = new Cliente();
@@ -32,31 +30,11 @@ public class ClienteService {
         cliente.setCelular(celular);
         cliente.setFidelidade(fidelidade);
         cliente = clienteRepository.save(cliente);
-        
-        if (dados.get("veiculos") != null) {
-            List<Map<String, Object>> veiculosData = (List<Map<String, Object>>) dados.get("veiculos");
-            for (Map<String, Object> veiculoData : veiculosData) {
-                Veiculo veiculo = new Veiculo();
-                veiculo.setCliente(cliente);
-                veiculo.setModelo((String) veiculoData.get("modelo"));
-                veiculo.setMarca((String) veiculoData.get("marca"));
-                veiculo.setCor((String) veiculoData.get("cor"));
-                veiculo.setPlaca((String) veiculoData.get("placa"));
-                String tipo = (String) veiculoData.get("tipo");
-                if (tipo != null) {
-                    Veiculo.tipoVeiculo tipoVeiculo = Veiculo.tipoVeiculo.valueOf(tipo.toUpperCase());
-                    veiculo.setTipo(tipoVeiculo);
-                }
-                veiculos.add(veiculo);
-            }
-        }
-        
-        veiculoRepository.saveAll(veiculos);
-        System.out.println("Cliente cadastrado com sucesso: " + cliente.getId() + " - " + cliente.getNome());
-        return cliente;
+
+        return clienteToClienteResponse(cliente);
     }
 
-    public Cliente atualizarCliente(Map<String, Object> dados) {
+    public ClienteResponse atualizarCliente(Map<String, Object> dados) {
         Long id = Long.parseLong(dados.get("id").toString());
         Cliente cliente = clienteRepository.findById(id).orElse(null);
         if (cliente == null) {
@@ -79,16 +57,22 @@ public class ClienteService {
 
         cliente = clienteRepository.save(cliente);
         
-        System.out.println("Cliente atualizado com sucesso: " + cliente.getId() + " - " + cliente.getNome());
-        return cliente;
+        return clienteToClienteResponse(cliente);
     }
 
-    public Cliente buscarCliente(Long id) {
-        return clienteRepository.findById(id).orElse(null);
+    public ClienteResponse buscarCliente(Long id) {
+        Cliente cliente = clienteRepository.findById(id).orElse(null);
+        if (cliente == null)
+            return null;
+        else 
+            return clienteToClienteResponse(cliente);
     }
 
-    public List<Cliente> listarTodos() {
-        return clienteRepository.findAllByOrderById();
+    public List<ClienteResponse> listarTodos() {
+        List<Cliente> clientes = clienteRepository.findAllByOrderById();
+        return clientes.stream().map(cliente -> {
+            return clienteToClienteResponse(cliente);
+        }).toList();
     }
 
     public boolean deletarCliente(Long id) {
@@ -98,5 +82,9 @@ public class ClienteService {
             return true;
         }
         return false;
+    }
+
+    private ClienteResponse clienteToClienteResponse(Cliente cliente) {
+        return new ClienteResponse(cliente.getId(), cliente.getNome(), cliente.getCelular(), cliente.getFidelidade(), cliente.getVeiculos());
     }
 }

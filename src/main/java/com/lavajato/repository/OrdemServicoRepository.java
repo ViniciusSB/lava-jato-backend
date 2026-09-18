@@ -83,7 +83,7 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
             SELECT os.*
             FROM ordem_servico os
             INNER JOIN servico s ON os.servico_id = s.id
-            WHERE LOWER(s.tipo) LIKE CONCAT('%', LOWER(:termo), '%')
+            WHERE LOWER(s.tipo) = LOWER(:termo)
             ORDER BY os.id
             LIMIT :limit OFFSET :offset;
             """)

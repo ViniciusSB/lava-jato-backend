@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lavajato.model.Cliente;
+import com.lavajato.dto.cliente.ClienteResponse;
 import com.lavajato.service.ClienteService;
 
 @RestController
@@ -24,27 +24,22 @@ public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
-    
-    @GetMapping(value = "/getCliente")
-    public String getCliente() {
-        return "Hello World";
-    }
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Map<String, Object> dados) {
-        Cliente cliente = clienteService.cadastrarCliente(dados);
+    public ResponseEntity<ClienteResponse> cadastrarCliente(@RequestBody Map<String, Object> dados) {
+        ClienteResponse cliente = clienteService.cadastrarCliente(dados);
         return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
     }
 
     @PutMapping(value = "/atualizar")
-    public ResponseEntity<Cliente> atualizarCliente(@RequestBody Map<String, Object> dados) {
-        Cliente cliente = clienteService.atualizarCliente(dados);
+    public ResponseEntity<ClienteResponse> atualizarCliente(@RequestBody Map<String, Object> dados) {
+        ClienteResponse cliente = clienteService.atualizarCliente(dados);
         return ResponseEntity.status(HttpStatus.OK).body(cliente);  
     }
 
     @GetMapping(value = "/listar/{id}")
-    public ResponseEntity<Cliente> ListarClientePorId(@PathVariable Long id) {
-        Cliente cliente = clienteService.buscarCliente(id);
+    public ResponseEntity<ClienteResponse> ListarClientePorId(@PathVariable Long id) {
+        ClienteResponse cliente = clienteService.buscarCliente(id);
         if (cliente != null) {
             return ResponseEntity.status(HttpStatus.OK).body(cliente);
         } else {
@@ -53,8 +48,8 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity<List<Cliente>> ListarTodos() {
-        List<Cliente> clientes = clienteService.listarTodos();
+    public ResponseEntity<List<ClienteResponse>> ListarTodos() {
+        List<ClienteResponse> clientes = clienteService.listarTodos();
         if (clientes != null) {
             return ResponseEntity.status(HttpStatus.OK).body(clientes);
         } else {
