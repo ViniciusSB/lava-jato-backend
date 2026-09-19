@@ -34,10 +34,6 @@ public class OrdemServico {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    
-    private String observacao;
-    private boolean entregaDomicilio;
-    private String enderecoEntrega;
 
     private LocalDateTime dataCriacao;
 

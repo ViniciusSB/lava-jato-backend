@@ -19,9 +19,6 @@ public class OrdemServicoResponse {
     private ClienteOrdemServico cliente;
     private Veiculo veiculo;
     private UsuarioResponse funcionario;
-    private String observacao;
-    private boolean entregaDomicilio;
-    private String enderecoEntrega;
 }
 
 

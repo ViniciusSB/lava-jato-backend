@@ -48,10 +48,6 @@ public class OrdemServicoService {
         Long veiculoId = Long.valueOf(dados.get("veiculoId").toString());
         Long servicoId = Long.valueOf(dados.get("servicoId").toString());
 
-        String observacao = dados.get("observacao") != null ? (String) dados.get("observacao") : null;
-        boolean entregaDomicilio = dados.get("entrega") != null ? (boolean) dados.get("entrega") : false;
-        String enderecoEntrega = dados.get("endereco") != null ? (String) dados.get("endereco") : null;
-
         Usuario funcionario = usuarioRepository.findById(funcionarioId).orElse(null);
         Veiculo veiculo = veiculoRepository.findById(veiculoId).orElse(null);
         Servico servico = servicoRepository.findById(servicoId).orElse(null);
@@ -61,9 +57,6 @@ public class OrdemServicoService {
         ordemServico.setCliente(cliente);
         ordemServico.setVeiculo(veiculo);
         ordemServico.setServico(servico);
-        ordemServico.setObservacao(observacao);
-        ordemServico.setEnderecoEntrega(enderecoEntrega);
-        ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(OrdemServico.Status.EM_ANDAMENTO);
         ordemServico.setDataCriacao(LocalDateTime.now());
 
@@ -81,10 +74,7 @@ public class OrdemServicoService {
         Long clienteId = Long.valueOf(dados.get("clienteId").toString());
         Long veiculoId = Long.valueOf(dados.get("veiculoId").toString());
         Long servicoId = Long.valueOf(dados.get("servicoId").toString());
-
-        String observacao = dados.get("observacao") != null ? (String) dados.get("observacao") : null;
-        boolean entregaDomicilio = dados.get("entrega") != null ? (boolean) dados.get("entrega") : false;
-        String enderecoEntrega = dados.get("endereco") != null ? (String) dados.get("endereco") : null;
+    
         String status = dados.get("status") != null ? (String) dados.get("status") : null;
 
         Usuario funcionario = usuarioRepository.findById(funcionarioId).orElse(null);
@@ -96,9 +86,6 @@ public class OrdemServicoService {
         ordemServico.setCliente(cliente != null ? cliente : ordemServico.getCliente());
         ordemServico.setVeiculo(veiculo != null ? veiculo : ordemServico.getVeiculo());
         ordemServico.setServico(servico != null ? servico : ordemServico.getServico());
-        ordemServico.setObservacao(observacao);
-        ordemServico.setEnderecoEntrega(enderecoEntrega);
-        ordemServico.setEntregaDomicilio(entregaDomicilio);
         ordemServico.setStatus(status != null ? OrdemServico.Status.valueOf(status.toUpperCase()) : ordemServico.getStatus());
 
         ordemServico = gerarPrecoOrdemServico(ordemServico);
@@ -204,9 +191,6 @@ public class OrdemServicoService {
         response.setServico(ordemServico.getServico());
         response.setPreco(ordemServico.getPreco());
         response.setStatus(ordemServico.getStatus().toString());
-        response.setObservacao(ordemServico.getObservacao());
-        response.setEntregaDomicilio(ordemServico.isEntregaDomicilio());
-        response.setEnderecoEntrega(ordemServico.getEnderecoEntrega());
         return response;
     }
 

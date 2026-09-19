@@ -32,6 +32,7 @@ public class Usuario implements UserDetails{
 
     @Enumerated(EnumType.STRING)
     private tipoUsuario tipoUsuario;
+    private boolean ativo;
 
     private LocalDateTime dataCriacao;
 

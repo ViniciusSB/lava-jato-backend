@@ -48,7 +48,7 @@ public class AdminService {
         String dataParametro = dados.get("data") != null ? dados.get("data").toString() : null;
         DateTimeFormatter dataFormatada;
         String datas[] = dataParametro != null ? dataParametro.split("-") : null;
-        List<Usuario> funcionarios = usuarioRepository.findByTipoUsuario(Usuario.tipoUsuario.FUNCIONARIO);
+        List<Usuario> funcionarios = usuarioRepository.funcionariosAtivos();
         List<Cliente> clientes = clienteRepository.findAll();
         List<Servico> servicos = servicoRepository.findAll();
         List<Veiculo> veiculos = veiculoRepository.findAll();

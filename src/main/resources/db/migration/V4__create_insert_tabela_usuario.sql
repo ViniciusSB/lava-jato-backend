@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     email VARCHAR(150) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     tipo_usuario VARCHAR(20) NOT NULL,
+    ativo boolean not null default true,
     data_criacao TIMESTAMP,
     data_atualizacao TIMESTAMP
 );
