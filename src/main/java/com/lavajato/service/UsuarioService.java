@@ -87,13 +87,14 @@ public class UsuarioService {
     public ResponseEntity<UsuarioResponse> atualizarUsuario(UsuarioRequest request) {
         Usuario banco = usuarioRepository.findById(request.getId()).orElse(null);
         if (banco != null) {
-            banco.setTipoUsuario(Usuario.tipoUsuario.valueOf(request.getTipo()));
             if (request.getNome() != null && !request.getNome().isBlank())
                 banco.setNome(request.getNome());
             if (request.getEmail() != null && !request.getEmail().isBlank())
                 banco.setEmail(request.getEmail());
             if (request.getUrlFoto() != null && !request.getUrlFoto().isBlank())
                 banco.setUrlFoto(request.getUrlFoto());
+            if (request.getTipo() != null && !request.getTipo().isBlank())
+                banco.setTipoUsuario(Usuario.tipoUsuario.valueOf(request.getTipo()));
             usuarioRepository.save(banco);
             UsuarioResponse response = new UsuarioResponse(banco.getId(), banco.getNome(),
                     banco.getEmail(), banco.getTipoUsuario().toString(), banco.getUrlFoto(),

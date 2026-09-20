@@ -20,7 +20,7 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
     @Query(nativeQuery = true, value = """
             SELECT *
             FROM ordem_servico
-            ORDER BY id
+            ORDER BY data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
     List<OrdemServico> listarOrdensServicoPaginado(Long limit, Long offset);
@@ -30,86 +30,116 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Long
             FROM ordem_servico os
             INNER JOIN cliente c ON os.cliente_id = c.id
             WHERE LOWER(c.nome) LIKE CONCAT('%', LOWER(:termo), '%')
-            ORDER BY os.id
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
+            ORDER BY os.data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
-    List<OrdemServico> listarOrdensServicoPaginadoCliente(Long limit, Long offset, String termo);
+    List<OrdemServico> listarOrdensServicoPaginadoCliente(String termo, Integer dia, Integer mes, Integer ano, Long limit, Long offset);
 
     @Query(nativeQuery = true, value = """
             SELECT COUNT(os.id)
             FROM ordem_servico os
             INNER JOIN cliente c ON os.cliente_id = c.id
             WHERE LOWER(c.nome) LIKE CONCAT('%', LOWER(:termo), '%')
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
             """)
-    long contarOrdensServicoCliente(String termo);
+    long contarOrdensServicoCliente(String termo, Integer dia, Integer mes, Integer ano);
 
     @Query(nativeQuery = true, value = """
             SELECT os.*
             FROM ordem_servico os
             INNER JOIN veiculo v ON os.veiculo_id = v.id
             WHERE LOWER(v.tipo) LIKE CONCAT('%', LOWER(:termo), '%')
-            ORDER BY os.id
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
+            ORDER BY os.data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
-    List<OrdemServico> listarOrdensServicoPaginadoVeiculo(Long limit, Long offset, String termo);
+    List<OrdemServico> listarOrdensServicoPaginadoVeiculo(String termo, Integer dia, Integer mes, Integer ano, Long limit, Long offset);
 
     @Query(nativeQuery = true, value = """
             SELECT COUNT(os.id)
             FROM ordem_servico os
             INNER JOIN veiculo v ON os.veiculo_id = v.id
             WHERE LOWER(v.tipo) LIKE CONCAT('%', LOWER(:termo), '%')
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
             """)
-    long contarOrdensServicoVeiculo(String termo);
+    long contarOrdensServicoVeiculo(String termo, Integer dia, Integer mes, Integer ano);
 
     @Query(nativeQuery = true, value = """
             SELECT os.*
             FROM ordem_servico os
             INNER JOIN usuario u ON os.funcionario_id = u.id
             WHERE LOWER(u.nome) LIKE CONCAT('%', LOWER(:termo), '%')
-            ORDER BY os.id
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
+            ORDER BY os.data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
-    List<OrdemServico> listarOrdensServicoPaginadoFuncionario(Long limit, Long offset, String termo);
+    List<OrdemServico> listarOrdensServicoPaginadoFuncionario(String termo, Integer dia, Integer mes, Integer ano, Long limit, Long offset);
 
     @Query(nativeQuery = true, value = """
             SELECT COUNT(os.id)
             FROM ordem_servico os
             INNER JOIN usuario u ON os.funcionario_id = u.id
             WHERE LOWER(u.nome) LIKE CONCAT('%', LOWER(:termo), '%')
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
             """)
-    Long contarOrdensServicoFuncionario(String termo);
+    Long contarOrdensServicoFuncionario(String termo, Integer dia, Integer mes, Integer ano);
 
     @Query(nativeQuery = true, value = """
             SELECT os.*
             FROM ordem_servico os
             INNER JOIN servico s ON os.servico_id = s.id
             WHERE LOWER(s.tipo) = LOWER(:termo)
-            ORDER BY os.id
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
+            ORDER BY os.data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
-    List<OrdemServico> listarOrdensServicoPaginadoServico(Long limit, Long offset, String termo);
+    List<OrdemServico> listarOrdensServicoPaginadoServico(String termo, Integer dia, Integer mes, Integer ano, Long limit, Long offset);
 
     @Query(nativeQuery = true, value = """
             SELECT COUNT(os.id)
             FROM ordem_servico os
             INNER JOIN servico s ON os.servico_id = s.id
-            WHERE LOWER(s.tipo) LIKE CONCAT('%', LOWER(:termo), '%')
+            WHERE LOWER(s.tipo) = LOWER(:termo)
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
             """)
-    Long contarOrdensServicoServico(String termo);
+    Long contarOrdensServicoServico(String termo, Integer dia, Integer mes, Integer ano);
 
     @Query(nativeQuery = true, value = """
             SELECT os.*
             FROM ordem_servico os
             WHERE LOWER(os.status) LIKE CONCAT('%', LOWER(:termo), '%')
-            ORDER BY os.id
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
+            ORDER BY os.data_criacao DESC
             LIMIT :limit OFFSET :offset;
             """)
-    List<OrdemServico> listarOrdensServicoPaginadoStatus(Long limit, Long offset, String termo);
+    List<OrdemServico> listarOrdensServicoPaginadoStatus(String termo, Integer dia, Integer mes, Integer ano, Long limit, Long offset);
 
     @Query(nativeQuery = true, value = """
             SELECT COUNT(os.id)
             FROM ordem_servico os
             WHERE LOWER(os.status) LIKE CONCAT('%', LOWER(:termo), '%')
+            AND (:dia IS NULL OR CAST(EXTRACT(DAY FROM os.data_criacao) AS INTEGER) = :dia)
+            AND (:mes IS NULL OR CAST(EXTRACT(MONTH FROM os.data_criacao) AS INTEGER) = :mes)
+            AND (:ano IS NULL OR CAST(EXTRACT(YEAR FROM os.data_criacao) AS INTEGER) = :ano)
             """)
-    Long contarOrdensServicoStatus(String termo);
+    Long contarOrdensServicoStatus(String termo, Integer dia, Integer mes, Integer ano);
 }

@@ -1,5 +1,6 @@
 package com.lavajato.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +107,42 @@ public class OrdemServicoService {
         String termo = filtros.get("termo") != null ? filtros.get("termo").toString() : "";
         Long paginacao = filtros.get("paginacao") != null ? Long.parseLong(filtros.get("paginacao").toString()) : 10;
         Long pagina = filtros.get("pagina") != null ? Long.parseLong(filtros.get("pagina").toString()) : 1;
+        String intervaloTempo = filtros.get("intervaloTempo") != null ? filtros.get("intervaloTempo").toString() : "";
+        String periodo = filtros.get("periodo") != null ? filtros.get("periodo").toString() : "";
+        
+        LocalDate localDate = LocalDate.now();
+        Integer dia = localDate.getDayOfMonth();
+        Integer mes = localDate.getMonthValue();
+        Integer ano = localDate.getYear();
+
+        String[] periodos = periodo.split("-");
+        switch (intervaloTempo) {
+            case "dia":
+                if (periodos.length >= 1)
+                    dia = Integer.parseInt(periodos[0]);
+                if (periodos.length >= 2)
+                    mes = Integer.parseInt(periodos[1]);
+                if (periodos.length == 3)
+                    ano = Integer.parseInt(periodos[2]);
+                break;
+            case "mes":
+                dia = null;
+                if (periodos.length >= 1)
+                    mes = Integer.parseInt(periodos[0]);
+                if (periodos.length >= 2)
+                    ano = Integer.parseInt(periodos[1]);
+                break;
+            case "ano":
+                dia = null;
+                mes = null;
+                ano = periodo.length() == 4 ? Integer.parseInt(periodo) : ano;
+                break;
+            default:
+                dia = null;
+                mes = null;
+                ano = null;
+                break;
+        }
 
         Long contagem = 0L;
         long totalPaginas = 0;
@@ -113,36 +150,36 @@ public class OrdemServicoService {
 
         switch (tipo) {
             case "cliente":
-                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoCliente(paginacao, offset, termo);
-                contagem = ordemServicoRepository.contarOrdensServicoCliente(termo);
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoCliente(termo, dia, mes, ano, paginacao, offset);
+                contagem = ordemServicoRepository.contarOrdensServicoCliente(termo, dia, mes, ano);
                 totalPaginas = contagem / paginacao;
                 if (contagem % paginacao > 0)
                     totalPaginas += 1;
                 break;
             case "veiculo":
-                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoVeiculo(paginacao, offset, termo);
-                contagem = ordemServicoRepository.contarOrdensServicoVeiculo(termo);
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoVeiculo(termo, dia, mes, ano, paginacao, offset);
+                contagem = ordemServicoRepository.contarOrdensServicoVeiculo(termo, dia, mes, ano);
                 totalPaginas = contagem / paginacao;
                 if (contagem % paginacao > 0)
                     totalPaginas += 1;
                 break;
             case "funcionario":
-                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoFuncionario(paginacao, offset, termo);
-                contagem = ordemServicoRepository.contarOrdensServicoFuncionario(termo);
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoFuncionario(termo, dia, mes, ano, paginacao, offset);
+                contagem = ordemServicoRepository.contarOrdensServicoFuncionario(termo, dia, mes, ano);
                 totalPaginas = contagem / paginacao;
                 if (contagem % paginacao > 0)
                     totalPaginas += 1;
                 break;
             case "servico":
-                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoServico(paginacao, offset, termo);
-                contagem = ordemServicoRepository.contarOrdensServicoServico(termo);
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoServico(termo, dia, mes, ano, paginacao, offset);
+                contagem = ordemServicoRepository.contarOrdensServicoServico(termo, dia, mes, ano);
                 totalPaginas = contagem / paginacao;
                 if (contagem % paginacao > 0)
                     totalPaginas += 1;
                 break;
             case "status":
-                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoStatus(paginacao, offset, termo);
-                contagem = ordemServicoRepository.contarOrdensServicoStatus(termo);
+                ordemServicos = ordemServicoRepository.listarOrdensServicoPaginadoStatus(termo, dia, mes, ano, paginacao, offset);
+                contagem = ordemServicoRepository.contarOrdensServicoStatus(termo, dia, mes, ano);
                 totalPaginas = contagem / paginacao;
                 if (contagem % paginacao > 0)
                     totalPaginas += 1;
@@ -191,6 +228,9 @@ public class OrdemServicoService {
         response.setServico(ordemServico.getServico());
         response.setPreco(ordemServico.getPreco());
         response.setStatus(ordemServico.getStatus().toString());
+        String[] data = ordemServico.getDataCriacao().toString().split("T");
+        String[] datas = data[0].split("-");
+        response.setDataInicio(datas[2] + "-" + datas[1] + "-" + datas[0]);
         return response;
     }
 
