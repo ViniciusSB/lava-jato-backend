@@ -34,9 +34,8 @@ public class VeiculoController {
     }
 
     @PutMapping("/atualizar")
-    public ResponseEntity<Veiculo> atualizarVeiculo(@RequestBody Map<String, Object> dados) {
-        Veiculo veiculo = veiculoService.atualizarVeiculo(dados);
-        return ResponseEntity.ok(veiculo);
+    public ResponseEntity<VeiculoResponse> atualizarVeiculo(@RequestBody Map<String, Object> dados) {
+        return veiculoService.atualizarVeiculo(dados);
     }
 
     @GetMapping("/listar/{id}")
@@ -70,12 +69,7 @@ public class VeiculoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> deletarVeiculo(@PathVariable Long id) {
-        boolean deletado = veiculoService.deletarVeiculo(id);
-        if (deletado) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<VeiculoResponse> deletarVeiculo(@PathVariable Long id) {
+        return veiculoService.deletarVeiculo(id);
     }
 }

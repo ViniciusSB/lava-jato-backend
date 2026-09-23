@@ -51,16 +51,25 @@ public class UsuarioService {
         usuario = usuarioRepository.save(usuario);
 
         UsuarioResponse response = new UsuarioResponse(usuario.getId(), usuario.getNome(),
-                usuario.getEmail(), usuario.getTipoUsuario().toString(), usuario.getUrlFoto(), "Cadastro realizado");
+                usuario.getEmail(), usuario.getTipoUsuario().toString(), usuario.getUrlFoto(), usuario.obterStatus(), "Cadastro realizado");
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     public List<UsuarioResponse> listarUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return usuarios.stream().map(u -> {
+            UsuarioResponse response = new UsuarioResponse(u.getId(), u.getNome(),
+                    u.getEmail(), u.getTipoUsuario().toString(), u.getUrlFoto(), u.obterStatus(), "");
+            return response;
+        }).collect(Collectors.toList());
+    }
+
+    public List<UsuarioResponse> listarUsuariosAtivos() {
         List<Usuario> usuarios = usuarioRepository.usuariosAtivos();
         return usuarios.stream().map(u -> {
             UsuarioResponse response = new UsuarioResponse(u.getId(), u.getNome(),
-                    u.getEmail(), u.getTipoUsuario().toString(), u.getUrlFoto(), "");
+                    u.getEmail(), u.getTipoUsuario().toString(), u.getUrlFoto(), u.obterStatus(), "");
             return response;
         }).collect(Collectors.toList());
     }
@@ -69,7 +78,7 @@ public class UsuarioService {
         List<Usuario> usuarios = usuarioRepository.usuariosInativos();
         return usuarios.stream().map(u -> {
             UsuarioResponse response = new UsuarioResponse(u.getId(), u.getNome(),
-                    u.getEmail(), u.getTipoUsuario().toString(), u.getUrlFoto(), "");
+                    u.getEmail(), u.getTipoUsuario().toString(), u.getUrlFoto(), u.obterStatus(), "");
             return response;
         }).collect(Collectors.toList());
     }
@@ -78,7 +87,7 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario != null) {
             UsuarioResponse response = new UsuarioResponse(usuario.getId(), usuario.getNome(),
-                    usuario.getEmail(), usuario.getTipoUsuario().toString(), usuario.getUrlFoto(), "");
+                    usuario.getEmail(), usuario.getTipoUsuario().toString(), usuario.getUrlFoto(), usuario.obterStatus(), "");
             return response;
         }
         return null;
@@ -98,7 +107,7 @@ public class UsuarioService {
             usuarioRepository.save(banco);
             UsuarioResponse response = new UsuarioResponse(banco.getId(), banco.getNome(),
                     banco.getEmail(), banco.getTipoUsuario().toString(), banco.getUrlFoto(),
-                    "Dados alterados com sucesso");
+                    banco.obterStatus(), "Dados alterados com sucesso");
             return ResponseEntity.ok().body(response);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new UsuarioResponse("Usuário não localizado"));
@@ -116,7 +125,7 @@ public class UsuarioService {
             }
             usuarioRepository.save(banco);
             return new UsuarioResponse(banco.getId(), banco.getNome(),
-                    banco.getEmail(), banco.getTipoUsuario().toString(), banco.getUrlFoto(), "Senha alterada");
+                    banco.getEmail(), banco.getTipoUsuario().toString(), banco.getUrlFoto(), banco.obterStatus(), "Senha alterada");
         }
         return new UsuarioResponse("Usuário não localizado");
     }

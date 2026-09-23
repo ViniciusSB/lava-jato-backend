@@ -13,6 +13,7 @@ public class UsuarioResponse {
     private String email; 
     private String tipo;
     private String urlFoto;
+    private String status;
     private String mensagem;
 
     public UsuarioResponse(String mensagem) {

@@ -20,6 +20,7 @@ public class OrdemServicoResponse {
     private Veiculo veiculo;
     private UsuarioResponse funcionario;
     private String dataInicio;
+    private String mensagem;
 }
 
 

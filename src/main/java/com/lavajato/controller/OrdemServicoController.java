@@ -35,8 +35,7 @@ public class OrdemServicoController {
 
     @PutMapping("/atualizar")
     public ResponseEntity<OrdemServicoResponse> atualizarOrdemServico(@RequestBody Map<String, Object> dados) {
-        OrdemServicoResponse response = ordemServicoService.atualizar(dados);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ordemServicoService.atualizar(dados);
     }
 
     @PostMapping("/listar")
@@ -58,14 +57,9 @@ public class OrdemServicoController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<OrdemServicoResponse> deletarOrdemServico(@PathVariable Long id, Authentication authentication) {
         Usuario user = (Usuario) authentication.getPrincipal();
-        if (!user.getTipoUsuario().toString().equals("ADM"))
+        if (user.getTipoUsuario().toString().equals("FUNCIONARIO"))
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        boolean deletado = ordemServicoService.deletar(id);
-        if (deletado) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ordemServicoService.deletar(id);
     }
 
 

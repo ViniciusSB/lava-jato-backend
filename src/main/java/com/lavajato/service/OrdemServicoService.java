@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.lavajato.dto.ordemServico.ClienteOrdemServico;
@@ -67,9 +69,15 @@ public class OrdemServicoService {
         return ordemServicoToResponse(ordemServico);
     }
 
-    public OrdemServicoResponse atualizar(Map<String, Object> dados) {
+    public ResponseEntity<OrdemServicoResponse> atualizar(Map<String, Object> dados) {
+        OrdemServicoResponse osr = new OrdemServicoResponse();
         Long ordemServicoId = dados.get("ordemServicoId") != null ? Long.parseLong(dados.get("ordemServicoId").toString()) : null;
         OrdemServico ordemServico = ordemServicoRepository.findById(ordemServicoId).orElse(null);
+
+        if (ordemServico.getStatus().toString().equals("FINALIZADO")) {
+            osr.setMensagem("Não é possível alterar uma ordem finalizada");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(osr);
+        }
 
         Long funcionarioId = Long.valueOf(dados.get("funcionarioId").toString());
         Long clienteId = Long.valueOf(dados.get("clienteId").toString());
@@ -97,7 +105,9 @@ public class OrdemServicoService {
 
         ordemServico = ordemServicoRepository.save(ordemServico);
         
-        return ordemServicoToResponse(ordemServico);
+        osr = ordemServicoToResponse(ordemServico);
+        osr.setMensagem("Ordem atualizada");
+        return ResponseEntity.ok(osr);
     }
 
     public OrdemServicoPaginadoResponse listar(Map<String, Object> filtros) {
@@ -210,19 +220,24 @@ public class OrdemServicoService {
         }
     }
 
-    public boolean deletar(Long id) {
-        if (ordemServicoRepository.existsById(id)) {
+    public ResponseEntity<OrdemServicoResponse> deletar(Long id) {
+        OrdemServicoResponse osr = new OrdemServicoResponse();
+        OrdemServico os = ordemServicoRepository.findById(id).orElse(null);
+        if (os != null) {
+            if (os.getStatus().toString().equals("FINALIZADO")) {
+                osr.setMensagem("Não é possível deletar uma ordem finalizada");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(osr);
+            }
             ordemServicoRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
+            return ResponseEntity.ok().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
     public OrdemServicoResponse ordemServicoToResponse(OrdemServico ordemServico) {
         OrdemServicoResponse response = new OrdemServicoResponse();
         response.setId(ordemServico.getId());
-        response.setFuncionario(new UsuarioResponse(ordemServico.getFuncionario().getId(), ordemServico.getFuncionario().getNome(), ordemServico.getFuncionario().getEmail(), ordemServico.getFuncionario().getTipoUsuario().toString(), ordemServico.getFuncionario().getUrlFoto(), ""));
+        response.setFuncionario(new UsuarioResponse(ordemServico.getFuncionario().getId(), ordemServico.getFuncionario().getNome(), ordemServico.getFuncionario().getEmail(), ordemServico.getFuncionario().getTipoUsuario().toString(), ordemServico.getFuncionario().getUrlFoto(), ordemServico.getFuncionario().obterStatus(), ""));
         response.setCliente(new ClienteOrdemServico(ordemServico.getCliente().getId(),ordemServico.getCliente().getNome(), ordemServico.getCliente().getCelular(), ordemServico.getCliente().getFidelidade()));
         response.setVeiculo(ordemServico.getVeiculo());
         response.setServico(ordemServico.getServico());

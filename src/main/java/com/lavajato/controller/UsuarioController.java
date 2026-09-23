@@ -45,6 +45,12 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarios);
     }
 
+    @GetMapping("/listarAtivos")
+    public ResponseEntity<List<UsuarioResponse>> listarUsuariosAtivos() {
+        List<UsuarioResponse> usuarios = usuarioService.listarUsuarios();
+        return ResponseEntity.ok().body(usuarios);
+    }
+
     @GetMapping("/listarInativos")
     public ResponseEntity<List<UsuarioResponse>> listarUsuariosInativos() {
         List<UsuarioResponse> usuarios = usuarioService.listarUsuariosInativos();
@@ -52,7 +58,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/listar/{id}")
-    public ResponseEntity<UsuarioResponse> listarUsuarios(@PathVariable Long id) {
+    public ResponseEntity<UsuarioResponse> listarUsuario(@PathVariable Long id) {
         UsuarioResponse usuario = usuarioService.listarUsuarioPorId(id);
         return ResponseEntity.ok().body(usuario);
     }

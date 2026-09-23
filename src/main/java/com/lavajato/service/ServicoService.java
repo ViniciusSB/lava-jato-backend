@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.model.Servico;
 import com.lavajato.repository.ServicoRepository;
 
@@ -49,13 +52,18 @@ public class ServicoService {
         return servicoRepository.save(servico);
     }
 
-    public boolean deletar (Long id) {
-        if (servicoRepository.existsById(id)) {
+    public ResponseEntity<MensagemResponse> deletar (Long id) {
+        Servico servico = servicoRepository.findById(id).orElse(null);
+        if (servico != null) {
+            Long qtdOrdens = servicoRepository.qtdOrdensByServicoId(id);
+            if (qtdOrdens > 0) {
+                MensagemResponse mr = new MensagemResponse("Erro ao excluir. O serviço tem uma ou mais ordem de serviço associada(s)");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(mr);
+            }
             servicoRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
+            return ResponseEntity.noContent().build();
+        } 
+        return ResponseEntity.notFound().build();
     }
     
 }

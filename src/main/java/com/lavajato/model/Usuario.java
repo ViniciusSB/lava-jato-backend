@@ -54,6 +54,10 @@ public class Usuario implements UserDetails{
         FUNCIONARIO
     }
 
+    public String obterStatus() {
+        return this.ativo ? "ativo" : "inativo";
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + tipoUsuario.toString()));

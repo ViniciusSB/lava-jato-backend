@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.model.Servico;
 import com.lavajato.model.Usuario;
 import com.lavajato.service.ServicoService;
@@ -54,14 +55,10 @@ public class ServicoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id, Authentication authentication) {
+    public ResponseEntity<MensagemResponse> deletar(@PathVariable Long id, Authentication authentication) {
         Usuario user = (Usuario) authentication.getPrincipal();
         if (user.getTipoUsuario().toString().equals("GERENTE") || user.getTipoUsuario().toString().equals("ADM")) {
-            boolean sucesso = servicoService.deletar(id);
-            if (sucesso)
-                return ResponseEntity.noContent().build();
-            else
-                return ResponseEntity.notFound().build();
+            return  servicoService.deletar(id);
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }

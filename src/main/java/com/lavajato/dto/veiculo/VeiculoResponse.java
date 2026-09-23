@@ -12,4 +12,5 @@ public class VeiculoResponse {
     private String tipo;
     private Long clienteId;
     private String clienteNome;
+    private String mensagem;
 }
