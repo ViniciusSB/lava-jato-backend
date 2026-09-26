@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS veiculo (
     placa VARCHAR(20),
     tipo VARCHAR(20) NOT NULL,
     cliente_id BIGINT NOT NULL,
+    ativo boolean not null default true,
     data_criacao TIMESTAMP,
     data_atualizacao TIMESTAMP,
     CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(id)

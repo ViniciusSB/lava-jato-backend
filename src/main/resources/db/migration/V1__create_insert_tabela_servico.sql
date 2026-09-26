@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS servico (
     tipo VARCHAR(255) NOT NULL,
     detalhes TEXT,
     preco_base DOUBLE PRECISION NOT NULL,
+    ativo boolean not null default true,
     data_criacao TIMESTAMP,
     data_atualizacao TIMESTAMP
 );

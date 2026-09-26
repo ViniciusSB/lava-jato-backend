@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS cliente (
     nome VARCHAR(100) NOT NULL,
     celular VARCHAR(20),
     fidelidade INT DEFAULT 0,
+    ativo boolean not null default true,
     data_criacao TIMESTAMP,
     data_atualizacao TIMESTAMP
 );

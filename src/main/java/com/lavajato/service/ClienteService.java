@@ -4,12 +4,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.cliente.ClienteResponse;
+import com.lavajato.dto.veiculo.VeiculoResponse;
 import com.lavajato.model.Cliente;
+import com.lavajato.model.Veiculo;
 import com.lavajato.repository.ClienteRepository;
 import com.lavajato.repository.VeiculoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ClienteService {
@@ -29,6 +36,7 @@ public class ClienteService {
         cliente.setNome(nome);
         cliente.setCelular(celular);
         cliente.setFidelidade(fidelidade);
+        cliente.setAtivo(true);
         cliente = clienteRepository.save(cliente);
 
         return clienteToClienteResponse(cliente);
@@ -75,16 +83,51 @@ public class ClienteService {
         }).toList();
     }
 
-    public boolean deletarCliente(Long id) {
-        Cliente cliente = clienteRepository.findById(id).orElse(null);
+    @Transactional 
+    public ResponseEntity<MensagemResponse> desativarCliente(Long clienteId) {
+        Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
         if (cliente != null) {
-            clienteRepository.delete(cliente);
-            return true;
+            if (cliente.isAtivo()) {
+                clienteRepository.desativarCliente(clienteId);
+                clienteRepository.desativarVeiculosDoCliente(clienteId);
+                return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Cliente desativado"));
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Cliente já estava desativado"));
+            }
         }
-        return false;
+        return ResponseEntity.notFound().build();
+    }
+
+    @Transactional
+    public ResponseEntity<MensagemResponse> ativarCliente(Long clienteId) {
+        boolean ativo = clienteRepository.clienteAtivo(clienteId);
+        if (!ativo) {
+            clienteRepository.ativarCliente(clienteId);
+            clienteRepository.ativarVeiculosDoCliente(clienteId);
+            return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Cliente ativado"));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Cliente já estava ativado"));
+        }
     }
 
     private ClienteResponse clienteToClienteResponse(Cliente cliente) {
-        return new ClienteResponse(cliente.getId(), cliente.getNome(), cliente.getCelular(), cliente.getFidelidade(), cliente.getVeiculos());
+        List<VeiculoResponse> veiculoResponses = cliente.getVeiculos().stream().map(v -> {
+            return veiculoToVeiculoResponse(v);
+        }).toList();
+        return new ClienteResponse(cliente.getId(), cliente.getNome(), cliente.getCelular(), cliente.getFidelidade(), cliente.obterStatus(), veiculoResponses);
+    }
+
+    private VeiculoResponse veiculoToVeiculoResponse(Veiculo veiculo) {
+        VeiculoResponse vr = new VeiculoResponse();
+        vr.setId(veiculo.getId());
+        vr.setTipo(veiculo.getTipo().toString());
+        vr.setModelo(veiculo.getModelo());
+        vr.setMarca(veiculo.getMarca());
+        vr.setPlaca(veiculo.getPlaca());
+        vr.setCor(veiculo.getCor());
+        vr.setClienteId(veiculo.getCliente().getId());
+        vr.setClienteNome(veiculo.getCliente().getNome());
+        vr.setStatus(veiculo.obterStatus());
+        return vr;
     }
 }

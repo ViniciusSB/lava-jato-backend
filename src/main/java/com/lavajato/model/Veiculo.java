@@ -32,6 +32,7 @@ public class Veiculo {
     @ManyToOne
     @JsonIgnore
     private Cliente cliente;
+    private boolean ativo;
 
     private LocalDateTime dataCriacao;
 
@@ -52,5 +53,9 @@ public class Veiculo {
         CARRO,
         CAMINHONETE,
         CAMINHAO;
+    }
+
+    public String obterStatus() {
+        return this.ativo ? "ativo" : "inativo";
     }
 }

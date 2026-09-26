@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.veiculo.VeiculoResponse;
 import com.lavajato.model.Veiculo;
 import com.lavajato.service.VeiculoService;
@@ -68,8 +69,13 @@ public class VeiculoController {
         }
     }
 
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<VeiculoResponse> deletarVeiculo(@PathVariable Long id) {
-        return veiculoService.deletarVeiculo(id);
+    @PatchMapping ("/desativar/{id}")
+    public ResponseEntity<MensagemResponse> desativarVeiculo(@PathVariable Long id) {
+        return veiculoService.desativarVeiculo(id);
+    }
+
+    @PatchMapping ("/ativar/{id}")
+    public ResponseEntity<MensagemResponse> ativarVeiculo(@PathVariable Long id) {
+        return veiculoService.ativarVeiculo(id);
     }
 }

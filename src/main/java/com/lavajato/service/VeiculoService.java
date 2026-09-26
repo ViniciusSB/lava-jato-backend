@@ -9,11 +9,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.veiculo.VeiculoResponse;
 import com.lavajato.model.Cliente;
 import com.lavajato.model.Veiculo;
 import com.lavajato.repository.ClienteRepository;
 import com.lavajato.repository.VeiculoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class VeiculoService {
@@ -40,6 +43,7 @@ public class VeiculoService {
         veiculo.setMarca(marca);
         veiculo.setCor(cor);
         veiculo.setPlaca(placa);
+        veiculo.setAtivo(true);
 
         if (tipo != null) {
             Veiculo.tipoVeiculo tipoVeiculo = Veiculo.tipoVeiculo.valueOf(tipo.toUpperCase());
@@ -117,21 +121,35 @@ public class VeiculoService {
         }).collect(Collectors.toList());
     }
 
-    public ResponseEntity<VeiculoResponse> deletarVeiculo(Long id) {
-        VeiculoResponse vr = new VeiculoResponse();
-        if (veiculoRepository.existsById(id)) {
-            Long qtdOrdens = veiculoRepository.qtdOrdensPorVeiculoId(id);
-            if (qtdOrdens > 0) {
-                vr.setMensagem("Erro ao excluir. O veículo tem uma ou mais ordem de serviço associada(s)");
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(vr);
+    @Transactional 
+    public ResponseEntity<MensagemResponse> desativarVeiculo(Long veiculoId) {
+        Veiculo veiculo = veiculoRepository.findById(veiculoId).orElse(null);
+        if (veiculo != null) {
+            if (veiculo.isAtivo()) {
+                veiculoRepository.desativarVeiculo(veiculoId);
+                return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Veículo desativado"));
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Veículo já estava desativado"));
             }
-            veiculoRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
+    @Transactional
+    public ResponseEntity<MensagemResponse> ativarVeiculo(Long veiculoId) {
+        boolean ativo = veiculoRepository.veiculoAtivo(veiculoId);
+        if (!ativo) {
+            boolean proprietarioAtivo = veiculoRepository.verificarStatusProprietarioDoVeiculo(veiculoId);
+            if (!proprietarioAtivo) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(new MensagemResponse("Não é possível ativar o veículo. O proprietário está desativado"));
+            }
+            veiculoRepository.ativarVeiculo(veiculoId);
+            return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Veículo ativado"));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(new MensagemResponse("Veículo já estava ativado"));
+        }
+    }
+    
     private VeiculoResponse veiculoToVeiculoResponse(Veiculo veiculo) {
         VeiculoResponse response = new VeiculoResponse();
         response.setId(veiculo.getId());
@@ -141,6 +159,7 @@ public class VeiculoService {
         response.setPlaca(veiculo.getPlaca());
         response.setTipo(veiculo.getTipo() != null ? veiculo.getTipo().toString() : null);
         response.setClienteId(veiculo.getCliente() != null ? veiculo.getCliente().getId() : null);
+        response.setStatus(veiculo.obterStatus());
         response.setClienteNome(veiculo.getCliente() != null ? veiculo.getCliente().getNome() : null);
         return response;
     }

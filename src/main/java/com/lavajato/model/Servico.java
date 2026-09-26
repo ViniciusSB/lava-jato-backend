@@ -23,6 +23,7 @@ public class Servico {
     private String tipo; // Lavagem, Lavagem com Polimento
     private String detalhes;
     private double precoBase;
+    private boolean ativo;
 
     private LocalDateTime dataCriacao;
 
@@ -38,9 +39,14 @@ public class Servico {
         this.dataAtualizacao = LocalDateTime.now();
     }
 
-    public Servico (String tipo, String detalhes, double precoBase) {
+    public Servico (String tipo, String detalhes, double precoBase, boolean ativo) {
         this.tipo = tipo;
         this.detalhes = detalhes;
         this.precoBase = precoBase;
+        this.ativo = ativo;
+    }
+
+    public String obterStatus() {
+        return this.ativo ? "ativo" : "inativo";
     }
 }

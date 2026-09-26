@@ -2,7 +2,7 @@ package com.lavajato.dto.cliente;
 
 import java.util.List;
 
-import com.lavajato.model.Veiculo;
+import com.lavajato.dto.veiculo.VeiculoResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,6 @@ public class ClienteResponse {
     private String nome;
     private String celular;
     private Integer fidelidade;
-    private List<Veiculo> veiculos;
+    private String status;
+    private List<VeiculoResponse> veiculos;
 }

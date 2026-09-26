@@ -180,7 +180,7 @@ public class DashboardService {
             atendimento = new DadosAtendimento(atendidos, finalizados, andamento, veiculos);
         }
 
-        DadosFaturamento faturamento = null;
+        DadosFaturamento faturamento = new DadosFaturamento(0.0, 0.0, new ArrayList<>(), new ArrayList<>());
         if (dadosFaturamento.size() != 0) {
             Double totalBruto = dadosFaturamento.stream().mapToDouble(
                     df -> df.get("valor_bruto") != null ? Double.parseDouble(df.get("valor_bruto").toString()) : 0)

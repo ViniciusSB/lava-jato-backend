@@ -6,8 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.cliente.ClienteResponse;
 import com.lavajato.service.ClienteService;
 
@@ -57,14 +58,14 @@ public class ClienteController {
         }
     }
 
-    @DeleteMapping(value = "/deletar/{id}")
-    public ResponseEntity<Void> deletarCliente(@PathVariable Long id) {
-        boolean deletado = clienteService.deletarCliente(id);
-        if (deletado) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    @PatchMapping ("/desativar/{id}")
+    public ResponseEntity<MensagemResponse> desativarCliente(@PathVariable Long id) {
+        return clienteService.desativarCliente(id);
+    }
+
+    @PatchMapping ("/ativar/{id}")
+    public ResponseEntity<MensagemResponse> ativarCliente(@PathVariable Long id) {
+        return clienteService.ativarCliente(id);
     }
 
 

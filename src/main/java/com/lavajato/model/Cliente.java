@@ -25,6 +25,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Veiculo> veiculos;
     private Integer fidelidade;
+    private boolean ativo;
 
     private LocalDateTime dataCriacao;
 
@@ -38,5 +39,9 @@ public class Cliente {
     @PreUpdate
     public void preUpdate() {
         this.dataAtualizacao = LocalDateTime.now();
+    }
+
+    public String obterStatus() {
+        return this.ativo ? "ativo" : "inativo";
     }
 }

@@ -12,5 +12,6 @@ public class ClienteOrdemServico {
     private String nome;
     private String celular;
     private Integer fidelidade;
+    private String status;
 }
     
