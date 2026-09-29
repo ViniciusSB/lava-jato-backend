@@ -1,5 +1,7 @@
 package com.lavajato.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,6 +11,9 @@ import com.lavajato.model.Servico;
 
 @Repository
 public interface ServicoRepository extends JpaRepository<Servico, Long>{
+
+    @Query("SELECT s FROM Servico s WHERE s.ativo = true")
+    public List<Servico> servicosAtivos(); 
     
     @Query("SELECT COUNT(os.id) FROM Servico s INNER JOIN OrdemServico os ON os.servico = s WHERE s.id = :servicoId")
     public Long qtdOrdensByServicoId(Long servicoId);

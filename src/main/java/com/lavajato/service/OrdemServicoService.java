@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.ordemServico.ClienteOrdemServico;
 import com.lavajato.dto.ordemServico.OrdemServicoPaginadoResponse;
 import com.lavajato.dto.ordemServico.OrdemServicoResponse;
@@ -43,7 +44,7 @@ public class OrdemServicoService {
     @Autowired
     FaturamentoService faturamentoService;
 
-    public OrdemServicoResponse gerar(Map<String, Object> dados) {
+    public ResponseEntity<OrdemServicoResponse> gerar(Map<String, Object> dados) {
         OrdemServico ordemServico = new OrdemServico();
 
         Long funcionarioId = Long.valueOf(dados.get("funcionarioId").toString());
@@ -52,9 +53,17 @@ public class OrdemServicoService {
         Long servicoId = Long.valueOf(dados.get("servicoId").toString());
 
         Usuario funcionario = usuarioRepository.findById(funcionarioId).orElse(null);
+        if (funcionario != null && !funcionario.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao gerar ordem, funcionário inativo"));
         Veiculo veiculo = veiculoRepository.findById(veiculoId).orElse(null);
+        if (veiculo != null && !veiculo.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao gerar ordem, veículo inativo"));
         Servico servico = servicoRepository.findById(servicoId).orElse(null);
+        if (servico != null && !servico.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao gerar ordem, servico inativo"));
         Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        if (cliente != null && !cliente.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao gerar ordem, cliente inativo"));
         
         ordemServico.setFuncionario(funcionario);
         ordemServico.setCliente(cliente);
@@ -66,7 +75,7 @@ public class OrdemServicoService {
         ordemServico = gerarPrecoOrdemServico(ordemServico);
         
         ordemServico = ordemServicoRepository.save(ordemServico);
-        return ordemServicoToResponse(ordemServico);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ordemServicoToResponse(ordemServico));
     }
 
     public ResponseEntity<OrdemServicoResponse> atualizar(Map<String, Object> dados) {
@@ -87,9 +96,17 @@ public class OrdemServicoService {
         String status = dados.get("status") != null ? (String) dados.get("status") : null;
 
         Usuario funcionario = usuarioRepository.findById(funcionarioId).orElse(null);
+        if (funcionario != null && !funcionario.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao atualizar ordem, funcionário inativo"));
         Veiculo veiculo = veiculoRepository.findById(veiculoId).orElse(null);
+        if (veiculo != null && !veiculo.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao atualizar ordem, veículo inativo"));
         Servico servico = servicoRepository.findById(servicoId).orElse(null);
+        if (servico != null && !servico.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao atualizar ordem, servico inativo"));
         Cliente cliente = clienteRepository.findById(clienteId).orElse(null);
+        if (cliente != null && !cliente.isAtivo())
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new OrdemServicoResponse("Erro ao atualizar ordem, cliente inativo"));
         
         ordemServico.setFuncionario(funcionario != null ? funcionario : ordemServico.getFuncionario());
         ordemServico.setCliente(cliente != null ? cliente : ordemServico.getCliente());
@@ -207,6 +224,7 @@ public class OrdemServicoService {
             OrdemServicoResponse response = ordemServicoToResponse(os);
             return response;
         }).collect(Collectors.toList());
+        totalPaginas = totalPaginas == 0 ? 1 : totalPaginas;
         OrdemServicoPaginadoResponse ospr = new OrdemServicoPaginadoResponse(contagem, totalPaginas, pagina, lista);
         return ospr;
     }
@@ -220,13 +238,13 @@ public class OrdemServicoService {
         }
     }
 
-    public ResponseEntity<OrdemServicoResponse> deletar(Long id) {
-        OrdemServicoResponse osr = new OrdemServicoResponse();
+    public ResponseEntity<MensagemResponse> deletar(Long id) {
+        MensagemResponse mensagem = new MensagemResponse("");
         OrdemServico os = ordemServicoRepository.findById(id).orElse(null);
         if (os != null) {
             if (os.getStatus().toString().equals("FINALIZADO")) {
-                osr.setMensagem("Não é possível deletar uma ordem finalizada");
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(osr);
+                mensagem.setMensagem("Não é possível deletar uma ordem finalizada");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(mensagem);
             }
             ordemServicoRepository.deleteById(id);
             return ResponseEntity.ok().build();

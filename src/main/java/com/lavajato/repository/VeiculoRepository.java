@@ -12,6 +12,9 @@ import com.lavajato.model.Veiculo;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 
+    @Query("SELECT v FROM Veiculo v WHERE v.ativo = true")
+    List<Veiculo> veiculosAtivos();
+
     @Query("SELECT v FROM Veiculo v WHERE v.cliente.id = :clienteId")
     List<Veiculo> findByClienteId(Long clienteId);
 

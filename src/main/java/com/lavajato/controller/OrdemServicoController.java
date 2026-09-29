@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lavajato.dto.MensagemResponse;
 import com.lavajato.dto.ordemServico.OrdemServicoPaginadoResponse;
 import com.lavajato.dto.ordemServico.OrdemServicoResponse;
 import com.lavajato.model.Usuario;
@@ -29,8 +30,7 @@ public class OrdemServicoController {
     
     @PostMapping("/gerar")
     public ResponseEntity<OrdemServicoResponse> criarOrdemServico(@RequestBody Map<String, Object> dados) {
-        OrdemServicoResponse response = ordemServicoService.gerar(dados);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ordemServicoService.gerar(dados);
     }
 
     @PutMapping("/atualizar")
@@ -55,10 +55,10 @@ public class OrdemServicoController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<OrdemServicoResponse> deletarOrdemServico(@PathVariable Long id, Authentication authentication) {
+    public ResponseEntity<MensagemResponse> deletarOrdemServico(@PathVariable Long id, Authentication authentication) {
         Usuario user = (Usuario) authentication.getPrincipal();
         if (user.getTipoUsuario().toString().equals("FUNCIONARIO"))
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new MensagemResponse("Sem privilégios para essa ação"));
         return ordemServicoService.deletar(id);
     }
 

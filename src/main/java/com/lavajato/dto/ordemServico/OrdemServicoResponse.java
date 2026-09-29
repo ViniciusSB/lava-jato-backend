@@ -21,6 +21,10 @@ public class OrdemServicoResponse {
     private UsuarioResponse funcionario;
     private String dataInicio;
     private String mensagem;
+
+    public OrdemServicoResponse(String mensagem) {
+        this.mensagem = mensagem;
+    }
 }
 
 

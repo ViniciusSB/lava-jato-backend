@@ -14,6 +14,17 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     List<Cliente> findAllByOrderById();
 
+    @Query("SELECT c FROM Cliente c WHERE c.ativo = true")
+    public List<Cliente> clientesAtivos();
+
+    @Query(value = """
+        SELECT c.* FROM Cliente c
+        INNER JOIN veiculo v ON v.cliente_id = c.id
+        WHERE c.ativo = true AND v.ativo = true
+        GROUP BY c.id;
+        """, nativeQuery = true)
+    public List<Cliente> clientesAtivosEComVeiculosAtivos();
+
     @Query("SELECT c.ativo FROM Cliente c WHERE c.id = :id")
     public boolean clienteAtivo(Long id);
 

@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -49,9 +51,15 @@ public class AdminService {
         DateTimeFormatter dataFormatada;
         String datas[] = dataParametro != null ? dataParametro.split("-") : null;
         List<Usuario> funcionarios = usuarioRepository.funcionariosAtivos();
-        List<Cliente> clientes = clienteRepository.findAll();
-        List<Servico> servicos = servicoRepository.findAll();
-        List<Veiculo> veiculos = veiculoRepository.findAll();
+        List<Cliente> clientes = clienteRepository.clientesAtivosEComVeiculosAtivos();
+        List<Servico> servicos = servicoRepository.servicosAtivos();
+        List<Veiculo> veiculos = veiculoRepository.veiculosAtivos();
+        LocalDate hoje = LocalDate.now();
+
+        if (funcionarios.size() > 5) {
+            Collections.shuffle(funcionarios);
+            funcionarios = funcionarios.subList(0, 5);
+        }
 
         if (datas != null && datas.length == 3) {
             // Dia
@@ -61,10 +69,17 @@ public class AdminService {
                 gerarOrdemServicoTeste(f, clientes, servicos, veiculos, data);
             }
         } else if (datas != null && datas.length == 2) {
-            // Mês
+            // Mês 
             dataFormatada = DateTimeFormatter.ofPattern("MM-yyyy");
             YearMonth mes = YearMonth.parse(dataParametro, dataFormatada);
-            for (int i = 1; i < mes.lengthOfMonth() + 1; i++) {
+            String mesParametro = dataParametro.split("-")[0];
+            String anoParametro = dataParametro.split("-")[1];
+            int qtdDiasMes = mes.lengthOfMonth();
+            if (Integer.parseInt(mesParametro) == hoje.getMonthValue() && Integer.parseInt(anoParametro) == hoje.getYear()) {
+                qtdDiasMes = hoje.getDayOfMonth();
+            }
+            
+            for (int i = 1; i < qtdDiasMes + 1; i++) {
                 for (Usuario f : funcionarios) {
                     dataFormatada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     String mesAtual = mes.getMonthValue() < 10 ? "0" + mes.getMonthValue()
@@ -78,12 +93,24 @@ public class AdminService {
         } else if (datas != null && datas.length == 1) {
             // Ano
             Year ano = Year.parse(dataParametro);
-            for (int i = 1; i < 13; i++) {
-                dataFormatada = DateTimeFormatter.ofPattern("MM-yyyy");
+            YearMonth mesHoje = ano.atMonth(hoje.getMonthValue());
+
+            int qtdMeses = 12;
+            if (Integer.parseInt(dataParametro) == hoje.getYear()) {
+                qtdMeses = mesHoje.getMonthValue();
+            }
+
+            for (int i = 1; i < qtdMeses + 1; i++) {
                 String mesAtual = i < 10 ? "0" + String.valueOf(i) : String.valueOf(i);
                 dataParametro = mesAtual + "-" + ano.getValue();
+                dataFormatada = DateTimeFormatter.ofPattern("MM-yyyy");
                 YearMonth anoMes = YearMonth.parse(dataParametro, dataFormatada);
-                for (int j = 1; j < anoMes.lengthOfMonth() + 1; j++) {
+                int qtdDiasMes = anoMes.lengthOfMonth();
+                if (anoMes.getMonthValue() == mesHoje.getMonthValue()) {
+                    qtdDiasMes = hoje.getDayOfMonth();
+                }
+
+                for (int j = 1; j < qtdDiasMes + 1; j++) {
                     for (Usuario f : funcionarios) {
                         dataFormatada = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                         String diaAtual = j < 10 ? "0" + String.valueOf(j) : String.valueOf(j);
