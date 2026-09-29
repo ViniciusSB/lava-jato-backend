@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +45,25 @@ public class AdminService {
     @Autowired
     FaturamentoRepository faturamentoRepository;
 
+    public String gerarOrdensServicoDiaAtual() {
+        List<Usuario> funcionarios = usuarioRepository.funcionariosAtivos();
+        List<Cliente> clientes = clienteRepository.clientesAtivosEComVeiculosAtivos();
+        List<Servico> servicos = servicoRepository.servicosAtivos();
+        List<Veiculo> veiculos = veiculoRepository.veiculosAtivos();
+        LocalDateTime hoje = LocalDateTime.now();
+
+        if (funcionarios.size() > 5) {
+            Collections.shuffle(funcionarios);
+            funcionarios = funcionarios.subList(0, 5);
+        }
+
+        for (Usuario f : funcionarios) {
+            gerarOrdemServicoTeste(f, clientes, servicos, veiculos, hoje);
+        }
+
+        return "Ordens geradas";
+    }
+
     public String gerarOrdensServico(Map<String, Object> dados) {
         String dataParametro = dados.get("data") != null ? dados.get("data").toString() : null;
         DateTimeFormatter dataFormatada;
@@ -69,16 +87,17 @@ public class AdminService {
                 gerarOrdemServicoTeste(f, clientes, servicos, veiculos, data);
             }
         } else if (datas != null && datas.length == 2) {
-            // Mês 
+            // Mês
             dataFormatada = DateTimeFormatter.ofPattern("MM-yyyy");
             YearMonth mes = YearMonth.parse(dataParametro, dataFormatada);
             String mesParametro = dataParametro.split("-")[0];
             String anoParametro = dataParametro.split("-")[1];
             int qtdDiasMes = mes.lengthOfMonth();
-            if (Integer.parseInt(mesParametro) == hoje.getMonthValue() && Integer.parseInt(anoParametro) == hoje.getYear()) {
+            if (Integer.parseInt(mesParametro) == hoje.getMonthValue()
+                    && Integer.parseInt(anoParametro) == hoje.getYear()) {
                 qtdDiasMes = hoje.getDayOfMonth();
             }
-            
+
             for (int i = 1; i < qtdDiasMes + 1; i++) {
                 for (Usuario f : funcionarios) {
                     dataFormatada = DateTimeFormatter.ofPattern("dd-MM-yyyy");

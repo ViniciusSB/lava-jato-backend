@@ -25,4 +25,10 @@ public class AdminController {
 
         return ResponseEntity.status(HttpStatus.OK).body(retorno);
     }
+
+    @PostMapping("/gerarOrdemServicoDiaAtual")
+    public ResponseEntity<String> gerarOrdensServico() {
+        String retorno = service.gerarOrdensServicoDiaAtual();
+        return ResponseEntity.status(HttpStatus.OK).body(retorno);
+    }
 }
