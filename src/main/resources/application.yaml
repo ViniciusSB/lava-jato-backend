@@ -1,9 +1,12 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: lavajato-backend
   
   datasource:
-    url: jdbc:postgresql://localhost:5432/lavajato
+    url: ${DB_DATASOURCE}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 
