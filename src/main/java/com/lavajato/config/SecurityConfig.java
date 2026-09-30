@@ -48,7 +48,8 @@ public class SecurityConfig {
 
         configuration.setAllowedOriginPatterns(List.of(
                 "http://localhost:4200",
-                "https://*.ngrok-free.app"));
+                "https://*.ngrok-free.app",
+                "https://lava-jato-frontend-neon.vercel.app"));
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
